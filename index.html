@@ -30,6 +30,35 @@
             <img src="img/banner.png">
         </div>
 
+        <div class="trending-section container">
+            <div class="trending-header">
+                <h2>Most popular</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="switchFilter('all')">All Time</button>
+                    <button class="filter-btn" onclick="switchFilter('year')">This Year</button>
+                </div>
+            </div>
+            <div class="trending-main">
+            <div class="movies-grid" id="moviesGrid">
+                <div class="movie-card">Film 1</div>
+                <div class="movie-card">Film 2</div>
+                <div class="movie-card">Film 3</div>
+                <div class="movie-card">Film 4</div>
+                <div class="movie-card">Film 5</div>
+                <div class="movie-card">Film 6</div>
+                <div class="movie-card">Film 7</div>
+                <div class="movie-card">Film 8</div>
+                <div class="movie-card">Film 9</div>
+                <div class="movie-card">Film 10</div>
+            </div>
+                <button class="expand-btn" id="expandBtn" onclick="toggleMovies()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+            </div>
+        </div>
+
+
+
     </main>
 </body>
 </html>
