@@ -40,6 +40,14 @@ a {
   color: inherit;
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
 .container {
     padding-inline: 100px;
     padding-block: 10px;
@@ -58,7 +66,7 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
+    gap: 50px;
 }
 
 .nav-links a {
@@ -132,7 +140,7 @@ a {
 
 .trending-main{
     width: 90%;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 20px auto;
 }
 
@@ -167,4 +175,44 @@ a {
     border-radius: 50%;
     cursor: pointer;
     transition: 0.2s;
+}
+
+
+.status-filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    font-family: sans-serif;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #18181b;
+    border: 1px solid #27272a;
+    padding: 8px 16px;
+    border-radius: 30px;
+    color: #a1a1aa;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s ease;
+}
+
+.filter-checkbox input[type="checkbox"] {
+    accent-color: #3b82f6; 
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.filter-checkbox:hover {
+    border-color: #52525b;
+    background-color: #1f1f23;
+    color: #ffffff;
 }
