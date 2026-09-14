@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MovieList</title>
+    <title>Your Ranking - MovieList</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav class="navbar container">
-
-            <a href="#" class="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="img/filmweb.png" class="logo"> 
             </a>
 
@@ -26,7 +25,6 @@
         </nav>
     </header>
     <main>
-        
         <div class="status-filters">
             <label class="filter-checkbox">
                 <input type="checkbox" name="status" value="watching">
@@ -45,8 +43,114 @@
                 <span>Dropped</span>
             </label>
         </div>
+        <div class="user-movies-section container">
+            <h2>Your movie list</h2>
+            <div class="user-movies-grid">
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>Inception</h3>
+                        <p class="movie-status-tag">Completed</p>
+                        <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
 
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>Interstellar</h3>
+                        <p class="movie-status-tag">Watching</p>
+                        <div class="movie-rating-badge">Rating: <strong>10/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
 
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>The Dark Knight</h3>
+                        <p class="movie-status-tag">To Watch</p>
+                        <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>Pulp Fiction</h3>
+                        <p class="movie-status-tag">Dropped</p>
+                        <div class="movie-rating-badge">Rating: <strong>8/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>Fight Club</h3>
+                        <p class="movie-status-tag">Completed</p>
+                        <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>The Matrix</h3>
+                        <p class="movie-status-tag">Watching</p>
+                        <div class="movie-rating-badge">Rating: <strong>10/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>The Conjuring</h3>
+                        <p class="movie-status-tag">To Watch</p>
+                        <div class="movie-rating-badge">Rating: <strong>7/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+
+                <div class="user-movie-card">
+                    <div class="user-movie-poster">Poster</div>
+                    <div class="user-movie-info">
+                        <h3>Gladiator</h3>
+                        <p class="movie-status-tag">Dropped</p>
+                        <div class="movie-rating-badge">Rating: <strong>8/10</strong></div>
+                    </div>
+                    <button class="edit-movie-btn">Edit</button>
+                </div>
+            </div>
+        </div>
+        <div class="movie-modal-backdrop">
+            <div class="movie-modal">
+                <h3>Edit movie: Inception</h3>
+                <div class="modal-field">
+                    <label>Status:</label>
+                    <select class="filter-select">
+                        <option>Watching</option>
+                        <option selected>Completed</option>
+                        <option>To Watch</option>
+                        <option>Dropped</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Your rating (1-10):</label>
+                    <input type="text" value="9" class="modal-input-text">
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-save-btn">Save</button>
+                    <button class="modal-close-btn">Close</button>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
