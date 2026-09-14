@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies - MovieList</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar container">
+            <a href="index.html" class="logo-link">
+                <img src="img/filmweb.png" class="logo"> 
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="ranking.html">Your ranking</a></li>
+                <li><a href="support.html">Support us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <img src="img/user_pfp.png" class="user-logo">
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Przeglądaj bazę filmów</h1>
+
+        <div class="movies-filter-panel">
+            <div class="search-box-large">
+                <input type="text" placeholder="Szukaj tytułu, reżysera lub aktora...">
+            </div>
+
+            <div class="filter-row">
+                <select class="filter-select">
+                    <option value="">Wszystkie gatunki</>
+                    <option value="action">Akcja</option>
+                    <option value="scifi">Sci-Fi</option>
+                    <option value="drama">Dramat</option>
+                    <option value="horror">Horror</option>
+                </select>
+
+                <select class="filter-select">
+                    <option value="">Wszystkie lata</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="older">Starsze</option>
+                </select>
+
+                <select class="filter-select">
+                    <option value="">Sortuj według</option>
+                    <option value="popular">Najpopularniejsze</option>
+                    <option value="rating">Najwyżej oceniane</option>
+                    <option value="newest">Najnowsze</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="movies-results-grid">
+            <p>Wpisz frazę lub wybierz filtry, aby wyświetlić wyniki...</p>
+        </div>
+    </main>
+</body>
+</html>

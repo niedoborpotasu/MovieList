@@ -53,6 +53,7 @@ html::-webkit-scrollbar {
     padding-block: 10px;
 }
 
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -215,4 +216,48 @@ html::-webkit-scrollbar {
     border-color: #52525b;
     background-color: #1f1f23;
     color: #ffffff;
+}
+
+
+.movies-filter-panel {
+    background-color: #18181b;
+    border: 1px solid #27272a;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-box-large input {
+    width: 100%;
+    background-color: #09090b;
+    border: 1px solid #27272a;
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-box-large input::placeholder {
+    color: #71717a;
+}
+
+.filter-row {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-select {
+    background-color: #09090b;
+    border: 1px solid #27272a;
+    color: #a1a1aa;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    flex: 1;
+    cursor: pointer;
 }
