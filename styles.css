@@ -76,8 +76,11 @@ html::-webkit-scrollbar {
 }
 
 .user-logo {
+  width: 50px;
   height: 50px;
-  width: auto;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 main h1 {
@@ -200,7 +203,8 @@ main h1 {
 .movie-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 
@@ -367,7 +371,8 @@ main h1 {
 .user-movie-poster img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 
@@ -511,4 +516,60 @@ main.container p {
   color: #D8E3ED;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.banner-section {
+  margin: 0;
+  padding: 0;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-banner {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  Z-index: 1000;
+}
+
+.profile-pfp {
+  margin-top: -100px;
+  top: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 5px solid #D8E3ED;
+  Z-index: 1001;
+}
+
+.info-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 5px;
+}
+
+.profile-username {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: sans-serif;
+  color: #D8E3ED;
+  line-height: 40px;
+}
+
+.profile-bio {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: #D8E3ED;
+  line-height: 22px;
 }/*# sourceMappingURL=styles.css.map */
