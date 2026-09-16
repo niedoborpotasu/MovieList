@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Movies - MovieList</title>
@@ -9,40 +9,38 @@
     <header id="main-header"></header>
 
     <main class="container">
-        <h1>Przeglądaj bazę filmów</h1>
-
         <div class="movies-filter-panel">
             <div class="search-box-large">
-                <input type="text" placeholder="Szukaj tytułu, reżysera lub aktora...">
+                <input type="text" placeholder="Search by title, director or actor...">
             </div>
 
             <div class="filter-row">
                 <select class="filter-select">
-                    <option value="">Wszystkie gatunki</option>
-                    <option value="action">Akcja</option>
+                    <option value="">All genres</option>
+                    <option value="action">Action</option>
                     <option value="scifi">Sci-Fi</option>
-                    <option value="drama">Dramat</option>
+                    <option value="drama">Drama</option>
                     <option value="horror">Horror</option>
                 </select>
 
                 <select class="filter-select">
-                    <option value="">Wszystkie lata</option>
+                    <option value="">All years</option>
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
-                    <option value="older">Starsze</option>
+                    <option value="older">Older</option>
                 </select>
 
                 <select class="filter-select">
-                    <option value="">Sortuj według</option>
-                    <option value="popular">Najpopularniejsze</option>
-                    <option value="rating">Najwyżej oceniane</option>
-                    <option value="newest">Najnowsze</option>
+                    <option value="">Sort by</option>
+                    <option value="popular">Most popular</option>
+                    <option value="rating">Highest rated</option>
+                    <option value="newest">Newest</option>
                 </select>
             </div>
         </div>
 
         <div class="movies-results-grid">
-            <p>Wpisz frazę lub wybierz filtry, aby wyświetlić wyniki...</p>
+            <p>Type a phrase or choose filters to display results...</p>
         </div>
     </main>
 

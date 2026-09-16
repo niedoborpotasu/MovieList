@@ -2,32 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Ranking - MovieList</title>
+    <title>My Ranking - MovieList</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header id="main-header"></header>
-    <main>
-        <div class="status-filters">
-            <label class="filter-checkbox">
-                <input type="checkbox" name="status" value="watching">
-                <span>Watching</span>
-            </label>
-            <label class="filter-checkbox">
-                <input type="checkbox" name="status" value="completed">
-                <span>Completed</span>
-            </label>
-            <label class="filter-checkbox">
-                <input type="checkbox" name="status" value="to-watch">
-                <span>To Watch</span>
-            </label>
-            <label class="filter-checkbox">
-                <input type="checkbox" name="status" value="dropped">
-                <span>Dropped</span>
-            </label>
+    <main class="container">
+        <div class="ranking-filter-panel">
+            <div class="ranking-search-box">
+                <input type="text" id="rankingSearch" placeholder="Search movies in ranking...">
+            </div>
+
+            <div class="ranking-filter-row">
+                <div class="status-filters">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="status" value="watching">
+                        <span>Watching</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="status" value="completed">
+                        <span>Completed</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="status" value="to-watch">
+                        <span>To Watch</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="status" value="dropped">
+                        <span>Dropped</span>
+                    </label>
+                </div>
+
+                <div class="ranking-dropdowns">
+                    <select id="rankingRatingFilter" class="filter-select">
+                        <option value="">All ratings</option>
+                        <option value="10">10/10 only</option>
+                        <option value="9">9+ / 10</option>
+                        <option value="8">8+ / 10</option>
+                        <option value="7">7+ / 10</option>
+                    </select>
+
+                    <select id="rankingSort" class="filter-select">
+                        <option value="">Sort by</option>
+                        <option value="rating-desc">Rating: Highest first</option>
+                        <option value="rating-asc">Rating: Lowest first</option>
+                        <option value="title-asc">Title: A-Z</option>
+                        <option value="title-desc">Title: Z-A</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="user-movies-section container">
-            <h2>Your movie list</h2>
+
+        <div class="user-movies-section">
             <div class="user-movies-grid">
                 <div class="user-movie-card">
                     <div class="user-movie-poster"><img src="posters/inception.jpg" alt="Inception"></div>

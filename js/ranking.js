@@ -18,29 +18,66 @@ function applyRankingFilters() {
         }
     }
 
-    var cards = document.querySelectorAll('.user-movies-grid .user-movie-card');
+    var searchInput = document.getElementById('rankingSearch');
+    var searchVal = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+    var ratingSelect = document.getElementById('rankingRatingFilter');
+    var ratingVal = ratingSelect && ratingSelect.value ? parseInt(ratingSelect.value, 10) : null;
+
+    var sortSelect = document.getElementById('rankingSort');
+    var sortVal = sortSelect ? sortSelect.value : '';
+
+    var grid = document.querySelector('.user-movies-grid');
+    var cards = Array.from(document.querySelectorAll('.user-movies-grid .user-movie-card'));
+
     for (const card of cards) {
         var tag = card.querySelector('.movie-status-tag');
-        var cardStatus = '';
-        if (tag) {
-            cardStatus = tag.textContent.toLowerCase().trim();
-        }
+        var cardStatus = tag ? tag.textContent.toLowerCase().trim() : '';
 
-        if (checkedValues.length === 0) {
+        var titleEl = card.querySelector('h3');
+        var title = titleEl ? titleEl.textContent.toLowerCase().trim() : '';
+
+        var ratingEl = card.querySelector('.movie-rating-badge strong');
+        var ratingNum = ratingEl ? parseInt(ratingEl.textContent.split('/')[0].trim(), 10) : 0;
+
+        var statusMatches = checkedValues.length === 0 || checkedValues.includes(cardStatus) || checkedValues.includes(cardStatus.replace(' ', '-'));
+        var searchMatches = !searchVal || title.includes(searchVal);
+        var ratingMatches = ratingVal === null || (ratingVal === 10 ? ratingNum === 10 : ratingNum >= ratingVal);
+
+        if (statusMatches && searchMatches && ratingMatches) {
             card.style.display = 'flex';
         } else {
-            var isMatched = false;
-            for (const val of checkedValues) {
-                if (val === cardStatus || val === cardStatus.replace(' ', '-')) {
-                    isMatched = true;
-                    break;
-                }
+            card.style.display = 'none';
+        }
+    }
+
+    if (sortVal && grid) {
+        cards.sort(function(a, b) {
+            var ratingTextA = a.querySelector('.movie-rating-badge strong') ? a.querySelector('.movie-rating-badge strong').textContent : '0';
+            var ratingTextB = b.querySelector('.movie-rating-badge strong') ? b.querySelector('.movie-rating-badge strong').textContent : '0';
+            var numA = parseInt(ratingTextA.split('/')[0].trim(), 10) || 0;
+            var numB = parseInt(ratingTextB.split('/')[0].trim(), 10) || 0;
+
+            var titleA = a.querySelector('h3') ? a.querySelector('h3').textContent.toLowerCase().trim() : '';
+            var titleB = b.querySelector('h3') ? b.querySelector('h3').textContent.toLowerCase().trim() : '';
+
+            if (sortVal === 'rating-desc') {
+                return numB - numA;
             }
-            if (isMatched) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
+            if (sortVal === 'rating-asc') {
+                return numA - numB;
             }
+            if (sortVal === 'title-asc') {
+                return titleA.localeCompare(titleB);
+            }
+            if (sortVal === 'title-desc') {
+                return titleB.localeCompare(titleA);
+            }
+            return 0;
+        });
+
+        for (const card of cards) {
+            grid.appendChild(card);
         }
     }
 }
@@ -52,7 +89,7 @@ function openEditModal(card) {
     var statusEl = card.querySelector('.movie-status-tag');
     var ratingEl = card.querySelector('.movie-rating-badge strong');
 
-    var title = titleEl ? titleEl.textContent.trim() : 'Film';
+    var title = titleEl ? titleEl.textContent.trim() : 'Movie';
     var currentStatus = statusEl ? statusEl.textContent.trim() : 'Watching';
     var ratingText = ratingEl ? ratingEl.textContent.trim() : '10/10';
     var numericRating = ratingText.split('/')[0].trim();
@@ -133,6 +170,22 @@ function initRankingPage() {
     for (const cb of statusCheckboxes) {
         cb.addEventListener('change', applyRankingFilters);
     }
+
+    var searchInput = document.getElementById('rankingSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', applyRankingFilters);
+    }
+
+    var ratingSelect = document.getElementById('rankingRatingFilter');
+    if (ratingSelect) {
+        ratingSelect.addEventListener('change', applyRankingFilters);
+    }
+
+    var sortSelect = document.getElementById('rankingSort');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', applyRankingFilters);
+    }
+
     applyRankingFilters();
 
     if (!modalBackdrop) return;

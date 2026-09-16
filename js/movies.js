@@ -3,7 +3,7 @@ function renderBrowseMovies(moviesList) {
     if (!container) return;
 
     if (moviesList.length === 0) {
-        container.innerHTML = '<p>Brak filmów spełniających kryteria...</p>';
+        container.innerHTML = '<p>No movies match the criteria...</p>';
         return;
     }
 
@@ -11,8 +11,8 @@ function renderBrowseMovies(moviesList) {
     for (const m of moviesList) {
         var genreLabel = m.genre;
         if (m.genre === 'scifi') genreLabel = 'Sci-Fi';
-        if (m.genre === 'action') genreLabel = 'Akcja';
-        if (m.genre === 'drama') genreLabel = 'Dramat';
+        if (m.genre === 'action') genreLabel = 'Action';
+        if (m.genre === 'drama') genreLabel = 'Drama';
         if (m.genre === 'horror') genreLabel = 'Horror';
 
         var posterContent = m.poster ? '<img src="' + m.poster + '" alt="' + m.title + '">' : 'Poster';
@@ -21,8 +21,8 @@ function renderBrowseMovies(moviesList) {
             '<div class="user-movie-poster">' + posterContent + '</div>' +
             '<div class="user-movie-info">' +
             '<h3>' + m.title + '</h3>' +
-            '<p class="movie-status-tag">' + genreLabel + ' | Rok: ' + m.year + '</p>' +
-            '<div class="movie-rating-badge">Ocena: <strong>' + m.rating + '/10</strong></div>' +
+            '<p class="movie-status-tag">' + genreLabel + ' | Year: ' + m.year + '</p>' +
+            '<div class="movie-rating-badge">Rating: <strong>' + m.rating + '/10</strong></div>' +
             '</div>' +
             '</div>';
     }
