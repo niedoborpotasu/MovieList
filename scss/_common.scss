@@ -1,0 +1,31 @@
+main h1 {
+  font-size: 28px;
+  color: #ffffff;
+  margin: 30px 0 20px 0;
+  font-family: sans-serif;
+}
+
+.filter-select {
+  background-color: #2D3354;
+  border: 1px solid #27272a;
+  color: #D8E3ED;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  flex: 1;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+  border-color: #5D4521;
+  color: #ffffff;
+}
+
+.filter-select option {
+  background-color: #2D3354;
+  color: #ffffff;
+}

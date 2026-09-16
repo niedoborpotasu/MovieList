@@ -1,0 +1,37 @@
+.container {
+  padding-inline: 100px;
+  padding-block: 10px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #5D7799;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.nav-links a {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #D8E3ED;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.user-logo {
+  height: 50px;
+  width: auto;
+}
