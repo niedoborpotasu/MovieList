@@ -1,6 +1,6 @@
 namespace backend.Models;
 
-public class Movie
+public class MediaItem
 {
     public int Id {get; set;}
     public string Title {get; set;}
@@ -9,6 +9,9 @@ public class Movie
     public string? Description {get; set;}
     public Director? Director {get; set;}
     public double? Rating {get; set;}
+    public MediaType MediaType {get; set;}
 
     public List<Actor> Actors {get; set;} = new();
+    public List<Genre> Genres {get; set;} = new();
+    public List<Season> Seasons {get; set;} = new();
 }
