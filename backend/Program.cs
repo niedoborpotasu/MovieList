@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;                                                                                                
 using backend.Data; 
+using backend.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data source=movies.db"));
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseSqlite("Data source=movies.db"));
+builder.Services.Configure<TmdbConfig>(builder.Configuration.GetSection("Tmdb"));
 
 var app = builder.Build();
 

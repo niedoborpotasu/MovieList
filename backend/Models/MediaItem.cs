@@ -10,6 +10,7 @@ public class MediaItem
     public Director? Director {get; set;}
     public double? Rating {get; set;}
     public MediaType MediaType {get; set;}
+    public double? Popularity {get; set;}
 
     public List<Actor> Actors {get; set;} = new();
     public List<Genre> Genres {get; set;} = new();
