@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;                                                                                                
 using backend.Data; 
 using backend.Config;
+using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlite("Data source=movies.db"));
 builder.Services.Configure<TmdbConfig>(builder.Configuration.GetSection("Tmdb"));
+builder.Services.AddHttpClient<TmdbService>();
 
 var app = builder.Build();
 
