@@ -7,4 +7,5 @@ public class MovieFilterDto
     public int? GenreId { get; set; }
     public string? SortBy { get; set; }
     public int? Page { get; set; }
+    public int? MinVotes { get; set; } = 100;
 }

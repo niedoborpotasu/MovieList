@@ -52,6 +52,11 @@ public class TmdbService
                 {
                     url += $"&with_genres={filter.GenreId.Value}";
                 }
+
+                if (filter.MinVotes.HasValue)
+                {
+                    url += $"&vote_count.gte={filter.MinVotes.Value}";
+                }
             }
     
             var response = await _httpClient.GetFromJsonAsync<TmdbResponseDto>(url);
