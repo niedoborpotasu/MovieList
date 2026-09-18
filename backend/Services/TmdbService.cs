@@ -40,7 +40,7 @@ public class TmdbService
         }
         else
         {
-            var sortBy = string.IsNullOrWhiteSpace(filter.SortBy) ? "popularity.desc" : filter.SortBy;
+            var sortBy = string.IsNullOrWhiteSpace(filter.SortBy) ? "vote_count.desc" : filter.SortBy;
             url = $"discover/movie?page={page}&sort_by={sortBy}";
     
             if (filter.Year.HasValue)

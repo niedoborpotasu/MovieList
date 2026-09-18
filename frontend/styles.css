@@ -174,9 +174,25 @@ html::-webkit-scrollbar {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  max-height: 320px;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
+}
+
+.load-more-btn {
+  background-color: #5D4521;
+  color: #ffffff;
+  border: 1px solid #5D4521;
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  outline: none;
+}
+
+.load-more-btn:hover {
+  background-color: #785929;
+  border-color: #785929;
+  color: #ffffff;
 }
 
 .movie-card {

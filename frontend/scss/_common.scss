@@ -10,15 +10,114 @@
   flex: 1;
   cursor: pointer;
   transition: 0.2s ease;
+
+  &:hover,
+  &:focus {
+    border-color: #5D4521;
+    color: #ffffff;
+  }
+
+  option {
+    background-color: #2D3354;
+    color: #ffffff;
+  }
 }
 
-.filter-select:hover,
-.filter-select:focus {
-  border-color: #5D4521;
+.load-more-btn {
+  background-color: #5D4521;
   color: #ffffff;
+  border: 1px solid #5D4521;
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  outline: none;
+
+  &:hover {
+    background-color: #785929;
+    border-color: #785929;
+    color: #ffffff;
+  }
 }
 
-.filter-select option {
-  background-color: #2D3354;
-  color: #ffffff;
+.movie-card {
+  position: relative;
+  background: #5D7799;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  height: 330px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+
+    .movie-overlay {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.overlay-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+
+  .movie-votes {
+    color: #D8E3ED;
+    font-size: 12px;
+  }
+
+  .movie-rating {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.18);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
+
+.overlay-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h3 {
+    font-size: 15px;
+    margin: 0;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .movie-year {
+    font-size: 13px;
+    color: #D8E3ED;
+    opacity: 0.85;
+  }
 }

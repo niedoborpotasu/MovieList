@@ -58,7 +58,6 @@ async function fetchMovies(isAppend = false) {
 
     if (isAppend) {
         currentPage++;
-        if (loadMoreBtn) loadMoreBtn.textContent = 'Loading...';
     } else {
         currentPage = 1;
         container.innerHTML = '<p>Loading movies...</p>';
@@ -71,14 +70,17 @@ async function fetchMovies(isAppend = false) {
     const query = searchInput ? searchInput.value.trim() : '';
     const genreId = selects[0] ? selects[0].value : '';
     const year = selects[1] ? selects[1].value : '';
-    const sortBy = selects[2] ? selects[2].value : '';
+    const sortBy = (selects[2] && selects[2].value) ? selects[2].value : 'vote_count.desc';
 
     const params = new URLSearchParams();
     params.append('page', currentPage);
     if (query) params.append('query', query);
     if (genreId) params.append('genreId', genreId);
     if (year) params.append('year', year);
-    if (sortBy) params.append('sortBy', sortBy);
+    params.append('sortBy', sortBy);
+    if (sortBy === 'vote_average.desc') {
+        params.append('minVotes', 300);
+    }
 
     try {
         const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
@@ -89,7 +91,6 @@ async function fetchMovies(isAppend = false) {
         renderBrowseMovies(movies, isAppend);
 
         if (loadMoreBtn) {
-            loadMoreBtn.textContent = 'Load more movies';
             loadMoreBtn.style.display = (movies && movies.length === 20) ? 'inline-block' : 'none';
         }
     } catch (err) {

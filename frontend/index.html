@@ -14,17 +14,18 @@
 
         <div class="trending-section container">
             <div class="trending-header">
-                <h2>Most popular</h2>
+                <h2>Trending movies</h2>
                 <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="switchFilter('all')">All Time</button>
+                    <button class="filter-btn active" onclick="switchFilter('today')">Today</button>
                     <button class="filter-btn" onclick="switchFilter('year')">This Year</button>
+                    <button class="filter-btn" onclick="switchFilter('all')">All Time</button>
                 </div>
             </div>
             <div class="trending-main">
                 <div class="movies-grid" id="moviesGrid"></div>
-                <button class="expand-btn" id="expandBtn" onclick="toggleMovies()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </button>
+                <div class="load-more-container" style="text-align: center; margin: 30px 0;">
+                    <button id="homeLoadMoreBtn" class="load-more-btn" style="display: none;">Load more movies</button>
+                </div>
             </div>
         </div>
 
