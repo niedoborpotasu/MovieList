@@ -180,17 +180,19 @@ html::-webkit-scrollbar {
 }
 
 .movie-card {
+  position: relative;
   background: #5D7799;
   border: 1px solid #27272a;
   border-radius: 12px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: bold;
-  transition: opacity 0.2s ease;
+  height: 330px;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
 .movie-card img {
@@ -199,6 +201,63 @@ html::-webkit-scrollbar {
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
+}
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.overlay-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.movie-votes {
+  color: #D8E3ED;
+  font-size: 12px;
+}
+
+.movie-rating {
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.18);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.overlay-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.overlay-bottom h3 {
+  font-size: 15px;
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.overlay-bottom .movie-year {
+  font-size: 13px;
+  color: #D8E3ED;
+  opacity: 0.85;
 }
 
 .expand-btn {
@@ -265,8 +324,29 @@ html::-webkit-scrollbar {
   color: #D8E3ED;
   font-family: sans-serif;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .movies-grid,
+  .movies-results-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .movies-grid,
+  .movies-results-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .movies-grid,
+  .movies-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .ranking-filter-panel {

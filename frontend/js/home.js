@@ -1,7 +1,9 @@
+const API_BASE_URL = 'http://localhost:5131/api/movies';
+
 function switchFilter(filterType) {
-    var buttons = document.querySelectorAll('.filter-buttons .filter-btn');
+    const buttons = document.querySelectorAll('.filter-buttons .filter-btn');
     for (const btn of buttons) {
-        var text = btn.textContent.toLowerCase();
+        const text = btn.textContent.toLowerCase();
         if (filterType === 'all' && text.includes('all')) {
             btn.classList.add('active');
         } else if (filterType === 'year' && text.includes('year')) {
@@ -14,13 +16,13 @@ function switchFilter(filterType) {
 }
 
 function toggleMovies() {
-    var grid = document.getElementById('moviesGrid');
-    var expandBtn = document.getElementById('expandBtn');
+    const grid = document.getElementById('moviesGrid');
+    const expandBtn = document.getElementById('expandBtn');
     if (!grid) return;
 
     if (grid.classList.contains('expanded')) {
         grid.classList.remove('expanded');
-        grid.style.maxHeight = '320px';
+        grid.style.maxHeight = '350px';
         if (expandBtn) {
             expandBtn.style.transform = 'rotate(0deg)';
         }
@@ -33,43 +35,77 @@ function toggleMovies() {
     }
 }
 
-function loadHomeMovies(filterType) {
+function createHomeMovieCard(m) {
+    const posterPath = m.poster_path || m.posterPath;
+    const releaseDate = m.release_date || m.releaseDate;
+    const voteAvg = m.vote_average !== undefined ? m.vote_average : m.voteAverage;
+    const voteCnt = m.vote_count !== undefined ? m.vote_count : m.voteCount;
+
+    const year = releaseDate ? releaseDate.split('-')[0] : 'N/A';
+    const rating = voteAvg !== undefined && voteAvg !== null ? Number(voteAvg).toFixed(1) : 'N/A';
+    const votes = voteCnt !== undefined && voteCnt !== null ? Number(voteCnt).toLocaleString() : '0';
+    const posterSrc = posterPath 
+        ? 'https://image.tmdb.org/t/p/w500' + posterPath 
+        : 'https://placehold.co/500x750/2D3354/D8E3ED?text=' + encodeURIComponent(m.title || 'Movie');
+
+    return '<div class="movie-card" data-id="' + m.id + '">' +
+        '<img src="' + posterSrc + '" alt="' + (m.title || '') + '">' +
+        '<div class="movie-overlay">' +
+            '<div class="overlay-top">' +
+                '<span class="movie-votes">' + votes + ' votes</span>' +
+                '<span class="movie-rating">' + rating + '/10</span>' +
+            '</div>' +
+            '<div class="overlay-bottom">' +
+                '<h3>' + (m.title || '') + '</h3>' +
+                '<span class="movie-year">' + year + '</span>' +
+            '</div>' +
+        '</div>' +
+    '</div>';
+}
+
+async function loadHomeMovies(filterType) {
     filterType = filterType || 'all';
-    var grid = document.getElementById('moviesGrid');
-    var expandBtn = document.getElementById('expandBtn');
+    const grid = document.getElementById('moviesGrid');
+    const expandBtn = document.getElementById('expandBtn');
     if (!grid) return;
 
-    var currentYear = new Date().getFullYear();
-    var movies = testMovies;
+    grid.innerHTML = '<p>Loading movies...</p>';
+
+    const params = new URLSearchParams();
+    params.append('sortBy', 'popularity.desc');
     if (filterType === 'year') {
-        movies = testMovies.filter(function(m) {
-            return m.year === currentYear || m.year >= 2025;
-        });
+        params.append('year', new Date().getFullYear());
     }
 
-    var html = '';
-    for (const m of movies) {
-        if (m.poster) {
-            html += '<div class="movie-card" title="' + m.title + '"><img src="' + m.poster + '" alt="' + m.title + '"></div>';
-        } else {
-            html += '<div class="movie-card" title="' + m.title + '">' + m.title + '</div>';
+    try {
+        const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
+        if (!response.ok) {
+            throw new Error('API error');
         }
-    }
-    grid.innerHTML = html;
+        const movies = await response.json();
 
-    if (expandBtn) {
-        if (movies.length <= 5) {
-            expandBtn.style.display = 'none';
-            grid.style.maxHeight = 'none';
-        } else {
-            expandBtn.style.display = 'block';
-            grid.classList.remove('expanded');
-            grid.style.maxHeight = '320px';
-            expandBtn.style.transform = 'rotate(0deg)';
+        let html = '';
+        for (const m of movies) {
+            html += createHomeMovieCard(m);
         }
+        grid.innerHTML = html;
+
+        if (expandBtn) {
+            if (movies.length <= 5) {
+                expandBtn.style.display = 'none';
+                grid.style.maxHeight = 'none';
+            } else {
+                expandBtn.style.display = 'block';
+                grid.classList.remove('expanded');
+                grid.style.maxHeight = '350px';
+                expandBtn.style.transform = 'rotate(0deg)';
+            }
+        }
+    } catch (err) {
+        grid.innerHTML = '<p>Error loading movies. Make sure backend is running on http://localhost:5131.</p>';
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadHomeMovies();
+    loadHomeMovies('all');
 });

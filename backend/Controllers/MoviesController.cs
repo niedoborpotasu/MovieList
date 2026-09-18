@@ -21,4 +21,15 @@ public class MoviesController : ControllerBase
             var movies = await _tmdbService.GetMoviesAsync(filter);
             return Ok(movies);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMovieById(int id)
+        {
+            var movie = await _tmdbService.GetMovieDetailsAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return Ok(movie);
+        }
 }
