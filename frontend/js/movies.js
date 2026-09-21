@@ -15,7 +15,7 @@ function createMovieCard(m) {
         ? 'https://image.tmdb.org/t/p/w500' + posterPath 
         : 'https://placehold.co/500x750/2D3354/D8E3ED?text=' + encodeURIComponent(m.title || 'Movie');
 
-    return '<div class="movie-card" data-id="' + m.id + '">' +
+    return '<a href="movie-details.html?id=' + m.id + '" class="movie-card" data-id="' + m.id + '">' +
         '<img src="' + posterSrc + '" alt="' + (m.title || '') + '">' +
         '<div class="movie-overlay">' +
             '<div class="overlay-top">' +
@@ -27,7 +27,7 @@ function createMovieCard(m) {
                 '<span class="movie-year">' + year + '</span>' +
             '</div>' +
         '</div>' +
-    '</div>';
+    '</a>';
 }
 
 function renderBrowseMovies(moviesList, isAppend) {

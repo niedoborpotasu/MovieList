@@ -1,0 +1,235 @@
+.movie-details-wrapper {
+  padding-block: 20px;
+  min-height: 60vh;
+}
+
+.movie-loading,
+.movie-error {
+  text-align: center;
+  font-size: 18px;
+  color: #D8E3ED;
+  margin-top: 60px;
+}
+
+.movie-details-hero {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background-color: #5D7799;
+  border: 1px solid #27272a;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.movie-poster-box {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.movie-poster-large {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.movie-info-panel {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.movie-header-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.movie-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #D8E3ED;
+  font-size: 15px;
+  flex-wrap: wrap;
+}
+
+.movie-dot {
+  color: #D8E3ED;
+  opacity: 0.6;
+}
+
+.movie-rating-badge {
+  background: rgba(255, 215, 0, 0.18);
+  color: #FFD700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.movie-genres-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  background-color: #2D3354;
+  color: #D8E3ED;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.movie-director {
+  font-size: 16px;
+  color: #D8E3ED;
+}
+
+.movie-director strong {
+  color: #ffffff;
+  margin-right: 6px;
+}
+
+.movie-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.add-to-ranking-select {
+  background-color: #2D3354;
+  border: 1px solid #27272a;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.add-to-ranking-btn {
+  background-color: #E5A00D;
+  color: #1a1e36;
+  font-weight: 700;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.add-to-ranking-btn:hover {
+  opacity: 0.9;
+}
+
+.ranking-status-msg {
+  color: #A3E635;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.movie-synopsis-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-synopsis-section h3 {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.movie-synopsis-section p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #D8E3ED;
+}
+
+.cast-section {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.cast-section h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.cast-card {
+  background-color: #5D7799;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cast-avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2D3354;
+  color: #D8E3ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.cast-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cast-character {
+  font-size: 12px;
+  color: #D8E3ED;
+  opacity: 0.85;
+}
+
+@media (max-width: 860px) {
+  .movie-details-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .movie-poster-box {
+    width: 220px;
+  }
+
+  .movie-meta-row,
+  .movie-genres-row,
+  .movie-actions-row {
+    justify-content: center;
+  }
+}

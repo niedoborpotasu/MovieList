@@ -1,3 +1,4 @@
+const RANKING_API_URL = 'http://localhost:5131/api/ranking';
 var currentEditingCard = null;
 
 function applyRankingFilters() {
@@ -40,7 +41,8 @@ function applyRankingFilters() {
         var ratingEl = card.querySelector('.movie-rating-badge strong');
         var ratingNum = ratingEl ? parseInt(ratingEl.textContent.split('/')[0].trim(), 10) : 0;
 
-        var statusMatches = checkedValues.length === 0 || checkedValues.includes(cardStatus) || checkedValues.includes(cardStatus.replace(' ', '-'));
+        var normalizedStatus = cardStatus.replace(/\s+/g, '-');
+        var statusMatches = checkedValues.length === 0 || checkedValues.includes(cardStatus) || checkedValues.includes(normalizedStatus);
         var searchMatches = !searchVal || title.includes(searchVal);
         var ratingMatches = ratingVal === null || (ratingVal === 10 ? ratingNum === 10 : ratingNum >= ratingVal);
 
@@ -61,24 +63,74 @@ function applyRankingFilters() {
             var titleA = a.querySelector('h3') ? a.querySelector('h3').textContent.toLowerCase().trim() : '';
             var titleB = b.querySelector('h3') ? b.querySelector('h3').textContent.toLowerCase().trim() : '';
 
-            if (sortVal === 'rating-desc') {
-                return numB - numA;
-            }
-            if (sortVal === 'rating-asc') {
-                return numA - numB;
-            }
-            if (sortVal === 'title-asc') {
-                return titleA.localeCompare(titleB);
-            }
-            if (sortVal === 'title-desc') {
-                return titleB.localeCompare(titleA);
-            }
+            if (sortVal === 'rating-desc') return numB - numA;
+            if (sortVal === 'rating-asc') return numA - numB;
+            if (sortVal === 'title-asc') return titleA.localeCompare(titleB);
+            if (sortVal === 'title-desc') return titleB.localeCompare(titleA);
             return 0;
         });
 
         for (const card of cards) {
             grid.appendChild(card);
         }
+    }
+}
+
+function createUserMovieCard(item) {
+    var posterHtml = item.poster 
+        ? '<img src="' + item.poster + '" alt="' + item.title + '">' 
+        : 'Poster';
+
+    var ratingDisplay = (item.rating !== null && item.rating !== undefined) ? item.rating : 'N/A';
+
+    return '<div class="user-movie-card" data-ranking-id="' + item.id + '" data-media-id="' + item.mediaItemId + '">' +
+        '<div class="user-movie-poster">' + posterHtml + '</div>' +
+        '<div class="user-movie-info">' +
+            '<h3>' + item.title + '</h3>' +
+            '<p class="movie-status-tag">' + item.watchStatus + '</p>' +
+            '<div class="movie-rating-badge">Rating: <strong>' + ratingDisplay + '/10</strong></div>' +
+        '</div>' +
+        '<button class="edit-movie-btn">Edit</button>' +
+    '</div>';
+}
+
+async function loadUserRanking() {
+    var grid = document.querySelector('.user-movies-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Loading ranking from database...</p>';
+
+    try {
+        var response = await fetch(RANKING_API_URL + '?userId=1');
+        if (!response.ok) {
+            throw new Error('Failed to load ranking');
+        }
+
+        var items = await response.json();
+        if (!items || items.length === 0) {
+            grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Your ranking is empty. Add movies to your ranking!</p>';
+            return;
+        }
+
+        var html = '';
+        for (const item of items) {
+            html += createUserMovieCard(item);
+        }
+        grid.innerHTML = html;
+
+        var editButtons = grid.querySelectorAll('.edit-movie-btn');
+        for (const btn of editButtons) {
+            btn.addEventListener('click', function(e) {
+                var card = e.target.closest('.user-movie-card');
+                if (card) {
+                    openEditModal(card);
+                }
+            });
+        }
+
+        applyRankingFilters();
+    } catch (err) {
+        grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Could not connect to backend database. Please start backend with dotnet run.</p>';
     }
 }
 
@@ -104,7 +156,7 @@ function openEditModal(card) {
         modalTitle.textContent = 'Edit movie: ' + title;
     }
     if (modalRatingInput) {
-        modalRatingInput.value = numericRating;
+        modalRatingInput.value = numericRating === 'N/A' ? '10' : numericRating;
     }
 
     if (modalStatusSelect) {
@@ -129,12 +181,13 @@ function closeModal() {
     currentEditingCard = null;
 }
 
-function saveModalChanges() {
+async function saveModalChanges() {
     if (!currentEditingCard) {
         closeModal();
         return;
     }
 
+    var rankingId = currentEditingCard.getAttribute('data-ranking-id');
     var modal = document.querySelector('.movie-modal');
     var modalStatusSelect = modal ? modal.querySelector('.modal-field select') : null;
     var modalRatingInput = modal ? modal.querySelector('.modal-input-text') : null;
@@ -142,11 +195,21 @@ function saveModalChanges() {
     var newStatus = modalStatusSelect ? modalStatusSelect.value : 'Watching';
     var newRating = modalRatingInput ? parseInt(modalRatingInput.value, 10) : 10;
 
-    if (isNaN(newRating) || newRating < 1) {
-        newRating = 1;
-    }
-    if (newRating > 10) {
-        newRating = 10;
+    if (isNaN(newRating) || newRating < 1) newRating = 1;
+    if (newRating > 10) newRating = 10;
+
+    if (rankingId) {
+        try {
+            await fetch(RANKING_API_URL + '/' + rankingId, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    watchStatus: newStatus,
+                    rating: newRating
+                })
+            });
+        } catch (err) {
+        }
     }
 
     var statusTag = currentEditingCard.querySelector('.movie-status-tag');
@@ -186,41 +249,31 @@ function initRankingPage() {
         sortSelect.addEventListener('change', applyRankingFilters);
     }
 
-    applyRankingFilters();
+    if (modalBackdrop) {
+        var modalSaveBtn = modalBackdrop.querySelector('.modal-save-btn');
+        if (modalSaveBtn) {
+            modalSaveBtn.addEventListener('click', saveModalChanges);
+        }
 
-    if (!modalBackdrop) return;
+        var modalCloseBtn = modalBackdrop.querySelector('.modal-close-btn');
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeModal);
+        }
 
-    var editButtons = document.querySelectorAll('.edit-movie-btn');
-    for (const btn of editButtons) {
-        btn.addEventListener('click', function(e) {
-            var card = e.target.parentElement;
-            if (card) {
-                openEditModal(card);
+        modalBackdrop.addEventListener('click', function(e) {
+            if (e.target === modalBackdrop) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
             }
         });
     }
 
-    var modalSaveBtn = modalBackdrop.querySelector('.modal-save-btn');
-    if (modalSaveBtn) {
-        modalSaveBtn.addEventListener('click', saveModalChanges);
-    }
-
-    var modalCloseBtn = modalBackdrop.querySelector('.modal-close-btn');
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeModal);
-    }
-
-    modalBackdrop.addEventListener('click', function(e) {
-        if (e.target === modalBackdrop) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
+    loadUserRanking();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
