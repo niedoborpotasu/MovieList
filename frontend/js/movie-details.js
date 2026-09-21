@@ -50,13 +50,19 @@ function renderMovieDetails(movie) {
             <div class="cast-section">
                 <h2>Top Cast</h2>
                 <div class="cast-grid">
-                    ${topCast.map(actor => `
-                        <div class="cast-card">
-                            <div class="cast-avatar-placeholder">${actor.name.charAt(0)}</div>
-                            <div class="cast-name">${actor.name}</div>
-                            <div class="cast-character">${actor.character || 'Actor'}</div>
-                        </div>
-                    `).join('')}
+                    ${topCast.map(actor => {
+                        const photoPath = actor.profile_path || actor.profilePath;
+                        const avatarHtml = photoPath
+                            ? `<img src="https://image.tmdb.org/t/p/w185${photoPath}" alt="${actor.name}" class="cast-avatar">`
+                            : `<div class="cast-avatar-placeholder">${actor.name.charAt(0)}</div>`;
+                        return `
+                            <div class="cast-card">
+                                ${avatarHtml}
+                                <div class="cast-name">${actor.name}</div>
+                                <div class="cast-character">${actor.character || 'Actor'}</div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             </div>
         `;

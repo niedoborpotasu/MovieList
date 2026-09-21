@@ -12,4 +12,7 @@ public class TmdbCastDto
 
     [JsonPropertyName("character")]
     public string? Character { get; set; }
+
+    [JsonPropertyName("profile_path")]
+    public string? ProfilePath { get; set; }
 }
