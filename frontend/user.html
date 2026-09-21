@@ -19,8 +19,257 @@
                 </div>
             </div>
         </div>
+
+        <div class="profile-nav-bar container">
+            <div class="profile-tabs">
+                <button class="profile-tab-btn active" data-tab="tab-ranking">My ranking</button>
+                <button class="profile-tab-btn" data-tab="tab-friends">Friends</button>
+                <button class="profile-tab-btn" data-tab="tab-settings">Settings</button>
+            </div>
+        </div>
+
+        <div class="profile-content container">
+            <section id="tab-ranking" class="profile-tab-pane active">
+                <div class="ranking-filter-panel">
+                    <div class="ranking-search-box">
+                        <input type="text" id="rankingSearch" placeholder="Search movies in ranking...">
+                    </div>
+
+                    <div class="ranking-filter-row">
+                        <div class="status-filters">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="status" value="watching">
+                                <span>Watching</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="status" value="completed">
+                                <span>Completed</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="status" value="to-watch">
+                                <span>To Watch</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="status" value="dropped">
+                                <span>Dropped</span>
+                            </label>
+                        </div>
+
+                        <div class="ranking-dropdowns">
+                            <select id="rankingRatingFilter" class="filter-select">
+                                <option value="">All ratings</option>
+                                <option value="10">10/10 only</option>
+                                <option value="9">9+ / 10</option>
+                                <option value="8">8+ / 10</option>
+                                <option value="7">7+ / 10</option>
+                            </select>
+
+                            <select id="rankingSort" class="filter-select">
+                                <option value="">Sort by</option>
+                                <option value="rating-desc">Rating: Highest first</option>
+                                <option value="rating-asc">Rating: Lowest first</option>
+                                <option value="title-asc">Title: A-Z</option>
+                                <option value="title-desc">Title: Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-movies-section">
+                    <div class="user-movies-grid">
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/inception.jpg" alt="Inception"></div>
+                            <div class="user-movie-info">
+                                <h3>Inception</h3>
+                                <p class="movie-status-tag">Completed</p>
+                                <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/interstellar.jpg" alt="Interstellar"></div>
+                            <div class="user-movie-info">
+                                <h3>Interstellar</h3>
+                                <p class="movie-status-tag">Watching</p>
+                                <div class="movie-rating-badge">Rating: <strong>10/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/dark_knight.jpg" alt="The Dark Knight"></div>
+                            <div class="user-movie-info">
+                                <h3>The Dark Knight</h3>
+                                <p class="movie-status-tag">To Watch</p>
+                                <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster">Poster</div>
+                            <div class="user-movie-info">
+                                <h3>Pulp Fiction</h3>
+                                <p class="movie-status-tag">Dropped</p>
+                                <div class="movie-rating-badge">Rating: <strong>8/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/fight_club.jpg" alt="Fight Club"></div>
+                            <div class="user-movie-info">
+                                <h3>Fight Club</h3>
+                                <p class="movie-status-tag">Completed</p>
+                                <div class="movie-rating-badge">Rating: <strong>9/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster">Poster</div>
+                            <div class="user-movie-info">
+                                <h3>The Matrix</h3>
+                                <p class="movie-status-tag">Watching</p>
+                                <div class="movie-rating-badge">Rating: <strong>10/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/the_conjuring.jpg" alt="The Conjuring"></div>
+                            <div class="user-movie-info">
+                                <h3>The Conjuring</h3>
+                                <p class="movie-status-tag">To Watch</p>
+                                <div class="movie-rating-badge">Rating: <strong>7/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+
+                        <div class="user-movie-card">
+                            <div class="user-movie-poster"><img src="posters/gladiator.jpg" alt="Gladiator"></div>
+                            <div class="user-movie-info">
+                                <h3>Gladiator</h3>
+                                <p class="movie-status-tag">Dropped</p>
+                                <div class="movie-rating-badge">Rating: <strong>8/10</strong></div>
+                            </div>
+                            <button class="edit-movie-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-modal-backdrop">
+                    <div class="movie-modal">
+                        <h3>Edit movie: Inception</h3>
+                        <div class="modal-field">
+                            <label>Status:</label>
+                            <select class="filter-select">
+                                <option>Watching</option>
+                                <option selected>Completed</option>
+                                <option>To Watch</option>
+                                <option>Dropped</option>
+                            </select>
+                        </div>
+                        <div class="modal-field">
+                            <label>Your rating (1-10):</label>
+                            <input type="text" value="9" class="modal-input-text">
+                        </div>
+                        <div class="modal-actions">
+                            <button class="modal-save-btn">Save</button>
+                            <button class="modal-close-btn">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-friends" class="profile-tab-pane">
+                <div class="profile-friends-section">
+                    <div class="profile-friends-header">
+                        <h2>Friends (4)</h2>
+                        <a href="friends.html" class="find-more-friends-btn">Find more friends</a>
+                    </div>
+                    <div class="profile-friends-grid">
+                        <div class="friend-card">
+                            <img src="img/stark_pfp.jpg" class="friend-avatar" alt="Bruce Wayne">
+                            <div class="friend-info">
+                                <h3 class="friend-name">Bruce Wayne</h3>
+                                <p class="friend-status">Watching: The Batman</p>
+                                <span class="friend-shared">18 movies in common</span>
+                            </div>
+                            <div class="friend-actions">
+                                <a href="friends.html" class="friend-action-btn">View profile</a>
+                            </div>
+                        </div>
+
+                        <div class="friend-card">
+                            <img src="img/stark_pfp.jpg" class="friend-avatar" alt="Peter Parker">
+                            <div class="friend-info">
+                                <h3 class="friend-name">Peter Parker</h3>
+                                <p class="friend-status">Completed: Spider-Man 2</p>
+                                <span class="friend-shared">24 movies in common</span>
+                            </div>
+                            <div class="friend-actions">
+                                <a href="friends.html" class="friend-action-btn">View profile</a>
+                            </div>
+                        </div>
+
+                        <div class="friend-card">
+                            <img src="img/stark_pfp.jpg" class="friend-avatar" alt="Steve Rogers">
+                            <div class="friend-info">
+                                <h3 class="friend-name">Steve Rogers</h3>
+                                <p class="friend-status">To Watch: Top Gun: Maverick</p>
+                                <span class="friend-shared">12 movies in common</span>
+                            </div>
+                            <div class="friend-actions">
+                                <a href="friends.html" class="friend-action-btn">View profile</a>
+                            </div>
+                        </div>
+
+                        <div class="friend-card">
+                            <img src="img/stark_pfp.jpg" class="friend-avatar" alt="Natasha Romanoff">
+                            <div class="friend-info">
+                                <h3 class="friend-name">Natasha Romanoff</h3>
+                                <p class="friend-status">Watching: Mission: Impossible</p>
+                                <span class="friend-shared">15 movies in common</span>
+                            </div>
+                            <div class="friend-actions">
+                                <a href="friends.html" class="friend-action-btn">View profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-settings" class="profile-tab-pane">
+                <div class="profile-settings-section">
+                    <form class="settings-form" id="profileSettingsForm">
+                        <div class="settings-group">
+                            <label for="settingsUsername">Username</label>
+                            <input type="text" id="settingsUsername" class="settings-input" value="Tony Stark">
+                        </div>
+
+                        <div class="settings-group">
+                            <label for="settingsBio">Bio</label>
+                            <textarea id="settingsBio" class="settings-textarea" rows="3">Genius, billionaire, playboy, philanthropist.</textarea>
+                        </div>
+
+                        <div class="settings-group">
+                            <label for="settingsEmail">Email</label>
+                            <input type="email" id="settingsEmail" class="settings-input" value="tony@starkindustries.com">
+                        </div>
+
+                        <div class="settings-actions">
+                            <button type="submit" class="settings-save-btn">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
 
     <script src="js/header.js"></script>
+    <script src="js/ranking.js"></script>
+    <script src="js/user.js"></script>
 </body>
 </html>

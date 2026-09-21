@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friends - MovieList</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header"></header>
+
+    <main class="container">
+        <div class="friends-header-bar">
+            <h1>Friends</h1>
+            <div class="friends-search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="friendsSearchInput" placeholder="Search friends by name...">
+            </div>
+        </div>
+
+        <div class="friends-filter-tabs">
+            <button class="friends-tab-btn active" data-filter="all">All Friends (4)</button>
+            <button class="friends-tab-btn" data-filter="recent">Recently Active</button>
+        </div>
+
+        <div class="friends-container">
+            <div class="friends-grid" id="friendsGrid">
+                <div class="friend-card-full" data-name="Bruce Wayne">
+                    <img src="img/stark_pfp.jpg" class="friend-avatar-lg" alt="Bruce Wayne">
+                    <div class="friend-details">
+                        <div class="friend-title-row">
+                            <h3>Bruce Wayne</h3>
+                            <span class="friend-tag">Friend</span>
+                        </div>
+                        <p class="friend-bio">I am vengeance. Movie enthusiast and collector.</p>
+                        <div class="friend-meta">
+                            <span>18 mutual movies</span>
+                            <span>Currently watching: The Batman</span>
+                        </div>
+                    </div>
+                    <div class="friend-card-actions">
+                        <a href="user.html" class="btn-primary">View Ranking</a>
+                        <button class="btn-secondary">Message</button>
+                    </div>
+                </div>
+
+                <div class="friend-card-full" data-name="Peter Parker">
+                    <img src="img/stark_pfp.jpg" class="friend-avatar-lg" alt="Peter Parker">
+                    <div class="friend-details">
+                        <div class="friend-title-row">
+                            <h3>Peter Parker</h3>
+                            <span class="friend-tag">Friend</span>
+                        </div>
+                        <p class="friend-bio">Your friendly neighborhood movie lover.</p>
+                        <div class="friend-meta">
+                            <span>24 mutual movies</span>
+                            <span>Completed: Spider-Man 2</span>
+                        </div>
+                    </div>
+                    <div class="friend-card-actions">
+                        <a href="user.html" class="btn-primary">View Ranking</a>
+                        <button class="btn-secondary">Message</button>
+                    </div>
+                </div>
+
+                <div class="friend-card-full" data-name="Steve Rogers">
+                    <img src="img/stark_pfp.jpg" class="friend-avatar-lg" alt="Steve Rogers">
+                    <div class="friend-details">
+                        <div class="friend-title-row">
+                            <h3>Steve Rogers</h3>
+                            <span class="friend-tag">Friend</span>
+                        </div>
+                        <p class="friend-bio">Catching up on everything I missed from the 21st century.</p>
+                        <div class="friend-meta">
+                            <span>12 mutual movies</span>
+                            <span>To Watch: Top Gun: Maverick</span>
+                        </div>
+                    </div>
+                    <div class="friend-card-actions">
+                        <a href="user.html" class="btn-primary">View Ranking</a>
+                        <button class="btn-secondary">Message</button>
+                    </div>
+                </div>
+
+                <div class="friend-card-full" data-name="Natasha Romanoff">
+                    <img src="img/stark_pfp.jpg" class="friend-avatar-lg" alt="Natasha Romanoff">
+                    <div class="friend-details">
+                        <div class="friend-title-row">
+                            <h3>Natasha Romanoff</h3>
+                            <span class="friend-tag">Friend</span>
+                        </div>
+                        <p class="friend-bio">Action, spy thrillers, and psychological dramas.</p>
+                        <div class="friend-meta">
+                            <span>15 mutual movies</span>
+                            <span>Currently watching: Mission: Impossible</span>
+                        </div>
+                    </div>
+                    <div class="friend-card-actions">
+                        <a href="user.html" class="btn-primary">View Ranking</a>
+                        <button class="btn-secondary">Message</button>
+                    </div>
+                </div>
+            </div>
+            <p id="noFriendsFound" class="no-results-msg" style="display: none;">No friends found matching your search.</p>
+        </div>
+    </main>
+
+    <script src="js/header.js"></script>
+    <script src="js/friends.js"></script>
+</body>
+</html>

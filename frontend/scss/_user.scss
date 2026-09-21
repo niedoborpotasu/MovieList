@@ -52,3 +52,210 @@
   color: #D8E3ED;
   line-height: 22px;
 }
+
+.profile-nav-bar {
+  margin-top: 25px;
+  border-bottom: 2px solid #5D7799;
+  padding-bottom: 0;
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 15px;
+}
+
+.profile-tab-btn {
+  background: none;
+  border: none;
+  color: #D8E3ED;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  border-radius: 6px 6px 0 0;
+}
+
+.profile-tab-btn:hover {
+  background-color: rgba(93, 119, 153, 0.2);
+  color: #ffffff;
+}
+
+.profile-tab-btn.active {
+  color: #ffffff;
+  border-bottom-color: #E5A00D;
+  background-color: rgba(93, 119, 153, 0.3);
+}
+
+.profile-content {
+  padding-top: 30px;
+}
+
+.profile-tab-pane {
+  display: none;
+}
+
+.profile-tab-pane.active {
+  display: block;
+}
+
+.profile-friends-section {
+  background-color: #5D7799;
+  border: 1px solid #27272a;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.profile-friends-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-friends-header h2 {
+  font-size: 24px;
+  color: #D8E3ED;
+}
+
+.find-more-friends-btn {
+  background-color: #2D3354;
+  color: #D8E3ED;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.find-more-friends-btn:hover {
+  background-color: #3d4670;
+  color: #ffffff;
+}
+
+.profile-friends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.friend-card {
+  background-color: #2D3354;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #3d4670;
+}
+
+.friend-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #D8E3ED;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.friend-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.friend-status {
+  font-size: 13px;
+  color: #D8E3ED;
+  opacity: 0.9;
+}
+
+.friend-shared {
+  font-size: 12px;
+  color: #E5A00D;
+}
+
+.friend-action-btn {
+  display: inline-block;
+  background-color: #5D7799;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background-color 0.2s ease;
+}
+
+.friend-action-btn:hover {
+  background-color: #4a6382;
+}
+
+.profile-settings-section {
+  background-color: #5D7799;
+  border: 1px solid #27272a;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 600px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #D8E3ED;
+}
+
+.settings-input,
+.settings-textarea {
+  background-color: #2D3354;
+  border: 1px solid #27272a;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+
+.settings-input:focus,
+.settings-textarea:focus {
+  border-color: #E5A00D;
+}
+
+.settings-actions {
+  display: flex;
+}
+
+.settings-save-btn {
+  background-color: #2D3354;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.settings-save-btn:hover {
+  background-color: #3d4670;
+}
