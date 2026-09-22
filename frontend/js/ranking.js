@@ -101,7 +101,9 @@ async function loadUserRanking() {
     grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Loading ranking from database...</p>';
 
     try {
-        var response = await fetch(RANKING_API_URL + '?userId=1');
+        var currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+        var currentUserId = currentUser ? currentUser.id : 1;
+        var response = await fetch(RANKING_API_URL + '?userId=' + currentUserId);
         if (!response.ok) {
             throw new Error('Failed to load ranking');
         }

@@ -23,38 +23,61 @@ function initUserTabs() {
 }
 
 function initUserSettings() {
-    var settingsForm = document.getElementById('profileSettingsForm');
-    if (!settingsForm) return;
-
-    settingsForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
+    var user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+    if (user) {
         var usernameInput = document.getElementById('settingsUsername');
-        var bioInput = document.getElementById('settingsBio');
-
+        var emailInput = document.getElementById('settingsEmail');
         var profileUsername = document.getElementById('profileUsername');
-        var profileBio = document.getElementById('profileBio');
+        if (usernameInput) usernameInput.value = user.username;
+        if (emailInput) emailInput.value = user.email;
+        if (profileUsername) profileUsername.textContent = user.username;
+    }
 
-        if (usernameInput && profileUsername) {
-            profileUsername.textContent = usernameInput.value;
-        }
+    var settingsForm = document.getElementById('profileSettingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        if (bioInput && profileBio) {
-            profileBio.textContent = bioInput.value;
-        }
+            var usernameInput = document.getElementById('settingsUsername');
+            var bioInput = document.getElementById('settingsBio');
 
-        var saveBtn = settingsForm.querySelector('.settings-save-btn');
-        if (saveBtn) {
-            var originalText = saveBtn.textContent;
-            saveBtn.textContent = 'Saved!';
-            setTimeout(function() {
-                saveBtn.textContent = originalText;
-            }, 1500);
-        }
-    });
+            var profileUsername = document.getElementById('profileUsername');
+            var profileBio = document.getElementById('profileBio');
+
+            if (usernameInput && profileUsername) {
+                profileUsername.textContent = usernameInput.value;
+            }
+
+            if (bioInput && profileBio) {
+                profileBio.textContent = bioInput.value;
+            }
+
+            var saveBtn = settingsForm.querySelector('.settings-save-btn');
+            if (saveBtn) {
+                var originalText = saveBtn.textContent;
+                saveBtn.textContent = 'Saved!';
+                setTimeout(function() {
+                    saveBtn.textContent = originalText;
+                }, 1500);
+            }
+        });
+    }
+
+    var logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            if (typeof logoutUser === 'function') {
+                logoutUser();
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (typeof requireAuth === 'function') {
+        var user = requireAuth();
+        if (!user) return;
+    }
     initUserTabs();
     initUserSettings();
 });

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In - MovieList</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header"></header>
+
+    <main class="container auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button type="button" id="tabLoginBtn" class="auth-tab-btn active">Sign In</button>
+                <button type="button" id="tabRegisterBtn" class="auth-tab-btn">Create Account</button>
+            </div>
+
+            <div id="authMessage" class="auth-message" style="display: none;"></div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="auth-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="auth-input" placeholder="you@example.com" required>
+                </div>
+
+                <div class="auth-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="auth-input" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Sign In</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <div class="auth-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" class="auth-input" placeholder="Choose a username" required>
+                </div>
+
+                <div class="auth-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="auth-input" placeholder="you@example.com" required>
+                </div>
+
+                <div class="auth-group">
+                    <label for="registerPassword">Password (min. 6 characters)</label>
+                    <input type="password" id="registerPassword" class="auth-input" placeholder="••••••••" minlength="6" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

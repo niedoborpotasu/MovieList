@@ -121,12 +121,14 @@ function renderMovieDetails(movie) {
     if (addBtn && msg) {
         addBtn.addEventListener('click', async function() {
             const selectedStatus = statusSelect ? statusSelect.value : 'To Watch';
+            var currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+            var currentUserId = currentUser ? currentUser.id : 1;
             try {
                 await fetch('http://localhost:5131/api/ranking', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        userId: 1,
+                        userId: currentUserId,
                         title: movie.title,
                         poster: posterSrc,
                         year: releaseDate ? parseInt(releaseDate.split('-')[0], 10) : null,

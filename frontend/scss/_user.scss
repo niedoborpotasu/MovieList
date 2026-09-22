@@ -259,3 +259,41 @@
 .settings-save-btn:hover {
   background-color: #3d4670;
 }
+
+.settings-logout-section {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid #3d4670;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-logout-section h3 {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.settings-logout-section p {
+  font-size: 14px;
+  color: #D8E3ED;
+  opacity: 0.85;
+}
+
+.settings-logout-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  background-color: #DC2626;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.settings-logout-btn:hover {
+  background-color: #B91C1C;
+}

@@ -1,0 +1,121 @@
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding-block: 40px;
+}
+
+.auth-card {
+  background-color: #5D7799;
+  border: 1px solid #27272a;
+  border-radius: 20px;
+  padding: 36px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  background-color: #2D3354;
+  color: #D8E3ED;
+  border: 1px solid #3d4670;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-tab-btn:hover {
+  background-color: #3d4670;
+  color: #ffffff;
+}
+
+.auth-tab-btn.active {
+  background-color: #E5A00D;
+  color: #1a1e36;
+  border-color: #E5A00D;
+  font-weight: 700;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #D8E3ED;
+}
+
+.auth-input {
+  background-color: #2D3354;
+  border: 1px solid #27272a;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #E5A00D;
+}
+
+.auth-input::placeholder {
+  color: #D8E3ED;
+  opacity: 0.6;
+}
+
+.auth-submit-btn {
+  background-color: #E5A00D;
+  color: #1a1e36;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: opacity 0.2s ease;
+}
+
+.auth-submit-btn:hover {
+  opacity: 0.9;
+}
+
+.auth-message {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.auth-message.error {
+  background-color: #EF4444;
+  color: #ffffff;
+}
+
+.auth-message.success {
+  background-color: #10B981;
+  color: #ffffff;
+}
