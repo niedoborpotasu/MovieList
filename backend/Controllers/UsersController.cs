@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using backend.Data;
 using backend.Models;
 using backend.DTOs;
+using backend.Services;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -13,11 +14,13 @@ public class UsersController : ControllerBase
 {
     private readonly AppDbContext _context;
     private readonly PasswordHasher<User> _passwordHasher;
+    private readonly PhotoService _photoService;
 
-    public UsersController(AppDbContext context)
+    public UsersController(AppDbContext context, PhotoService photoService)
     {
         _context = context;
         _passwordHasher = new PasswordHasher<User>();
+        _photoService = photoService;
     }
 
     [HttpGet]
@@ -30,6 +33,8 @@ public class UsersController : ControllerBase
                 Username = u.Username,
                 Email = u.Email,
                 IsAdmin = u.IsAdmin,
+                AvatarUrl = u.AvatarUrl,
+                BannerUrl = u.BannerUrl,
                 CreatedAt = u.CreatedAt
             })
             .ToListAsync();
@@ -48,6 +53,8 @@ public class UsersController : ControllerBase
                 Username = u.Username,
                 Email = u.Email,
                 IsAdmin = u.IsAdmin,
+                AvatarUrl = u.AvatarUrl,
+                BannerUrl = u.BannerUrl,
                 CreatedAt = u.CreatedAt
             })
             .FirstOrDefaultAsync();
@@ -93,9 +100,85 @@ public class UsersController : ControllerBase
             Username = user.Username,
             Email = user.Email,
             IsAdmin = user.IsAdmin,
+            AvatarUrl = user.AvatarUrl,
+            BannerUrl = user.BannerUrl,
             CreatedAt = user.CreatedAt
         };
 
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, result);
+    }
+
+    [HttpPost("{id}/avatar")]
+    public async Task<ActionResult<UserDto>> UploadAvatar(int id, IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("No file was uploaded.");
+        }
+
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound("User not found.");
+        }
+
+        var uploadResult = await _photoService.UploadAvatarAsync(file);
+        if (uploadResult.Error != null)
+        {
+            return BadRequest(uploadResult.Error.Message);
+        }
+
+        user.AvatarUrl = uploadResult.SecureUrl?.ToString();
+        await _context.SaveChangesAsync();
+
+        var result = new UserDto
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Email = user.Email,
+            IsAdmin = user.IsAdmin,
+            AvatarUrl = user.AvatarUrl,
+            BannerUrl = user.BannerUrl,
+            CreatedAt = user.CreatedAt
+        };
+
+        return Ok(result);
+    }
+
+    [HttpPost("{id}/banner")]
+    public async Task<ActionResult<UserDto>> UploadBanner(int id, IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("No file was uploaded.");
+        }
+
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound("User not found.");
+        }
+
+        var uploadResult = await _photoService.UploadBannerAsync(file);
+        if (uploadResult.Error != null)
+        {
+            return BadRequest(uploadResult.Error.Message);
+        }
+
+        user.BannerUrl = uploadResult.SecureUrl?.ToString();
+        await _context.SaveChangesAsync();
+
+        var result = new UserDto
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Email = user.Email,
+            IsAdmin = user.IsAdmin,
+            AvatarUrl = user.AvatarUrl,
+            BannerUrl = user.BannerUrl,
+            CreatedAt = user.CreatedAt
+        };
+
+        return Ok(result);
     }
 }

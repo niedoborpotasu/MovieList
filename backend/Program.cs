@@ -5,16 +5,16 @@ using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlite("Data source=movies.db"));
 builder.Services.Configure<TmdbConfig>(builder.Configuration.GetSection("Tmdb"));
 builder.Services.AddHttpClient<TmdbService>();
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
+builder.Services.AddScoped<PhotoService>();
 
 builder.Services.AddCors(options =>
 {

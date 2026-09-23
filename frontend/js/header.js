@@ -5,7 +5,8 @@ function updateHeaderAuth() {
     var user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
 
     if (user) {
-        navActions.innerHTML = '<a href="user.html" class="user-link"><img src="img/stark_pfp.jpg" class="user-logo" alt="Profile"></a>';
+        var avatarSrc = (user && user.avatarUrl) ? user.avatarUrl : 'img/stark_pfp.jpg';
+        navActions.innerHTML = '<a href="user.html" class="user-link"><img src="' + avatarSrc + '" class="user-logo" alt="Profile"></a>';
     } else {
         navActions.innerHTML = '<a href="login.html" class="btn-signin">Sign In</a>';
     }

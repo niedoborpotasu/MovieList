@@ -10,9 +10,9 @@
 
     <main>
         <div class="banner-section">
-            <img src="img/ironman1.jpg" class="profile-banner">
+            <img src="img/ironman1.jpg" class="profile-banner" id="profileBanner">
             <div class="profile-section">
-                <img src="img/stark_pfp.jpg" class="profile-pfp">
+                <img src="img/stark_pfp.jpg" class="profile-pfp" id="profileAvatar">
                 <div class="info-holder">
                     <h1 class="profile-username" id="profileUsername">Tony Stark</h1>
                     <p class="profile-bio" id="profileBio">Genius, billionaire, playboy, philanthropist.</p>
@@ -163,6 +163,39 @@
 
             <section id="tab-settings" class="profile-tab-pane">
                 <div class="profile-settings-section">
+                    <div class="settings-photos-section">
+                        <h3>Profile Pictures</h3>
+                        <div class="photo-upload-grid">
+                            <div class="photo-upload-card">
+                                <h4>Avatar Photo</h4>
+                                <div class="photo-preview-wrap">
+                                    <img id="avatarPreview" src="img/stark_pfp.jpg" class="photo-preview-img avatar-preview" alt="Avatar preview">
+                                </div>
+                                <div class="photo-upload-controls">
+                                    <label for="avatarFileInput" class="photo-upload-file-btn">Choose Avatar</label>
+                                    <input type="file" id="avatarFileInput" accept="image/*" style="display:none">
+                                    <span id="avatarFileName" class="photo-filename">No file chosen</span>
+                                    <button type="button" id="uploadAvatarBtn" class="photo-submit-btn" disabled>Upload to Cloud</button>
+                                </div>
+                                <div id="avatarUploadStatus" class="photo-status-msg"></div>
+                            </div>
+
+                            <div class="photo-upload-card">
+                                <h4>Banner Photo</h4>
+                                <div class="photo-preview-wrap banner-wrap">
+                                    <img id="bannerPreview" src="img/ironman1.jpg" class="photo-preview-img banner-preview" alt="Banner preview">
+                                </div>
+                                <div class="photo-upload-controls">
+                                    <label for="bannerFileInput" class="photo-upload-file-btn">Choose Banner</label>
+                                    <input type="file" id="bannerFileInput" accept="image/*" style="display:none">
+                                    <span id="bannerFileName" class="photo-filename">No file chosen</span>
+                                    <button type="button" id="uploadBannerBtn" class="photo-submit-btn" disabled>Upload to Cloud</button>
+                                </div>
+                                <div id="bannerUploadStatus" class="photo-status-msg"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <form class="settings-form" id="profileSettingsForm">
                         <div class="settings-group">
                             <label for="settingsUsername">Username</label>

@@ -6,5 +6,7 @@ namespace backend.DTOs;
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public bool IsAdmin { get; set; }
+        public string? AvatarUrl { get; set; }
+        public string? BannerUrl { get; set; }
         public DateTime CreatedAt { get; set; }
     }

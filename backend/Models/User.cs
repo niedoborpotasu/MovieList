@@ -7,5 +7,7 @@ public class User
     public string Email { get; set; }
     public string PasswordHash { get; set; }
     public bool IsAdmin { get; set; }
+    public string? AvatarUrl { get; set; }
+    public string? BannerUrl { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
