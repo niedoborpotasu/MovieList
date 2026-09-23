@@ -7,7 +7,7 @@
 .movie-error {
   text-align: center;
   font-size: 18px;
-  color: #D8E3ED;
+  color: #94A3B8;
   margin-top: 60px;
 }
 
@@ -15,8 +15,8 @@
   display: flex;
   gap: 40px;
   align-items: flex-start;
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 20px;
   padding: 30px;
   margin-top: 20px;
@@ -60,13 +60,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #D8E3ED;
+  color: #94A3B8;
   font-size: 15px;
   flex-wrap: wrap;
 }
 
 .movie-dot {
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.6;
 }
 
@@ -86,8 +86,8 @@
 }
 
 .genre-tag {
-  background-color: #2D3354;
-  color: #D8E3ED;
+  background-color: #1F293A;
+  color: #94A3B8;
   padding: 5px 12px;
   border-radius: 14px;
   font-size: 13px;
@@ -96,7 +96,7 @@
 
 .movie-director {
   font-size: 16px;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .movie-director strong {
@@ -113,8 +113,8 @@
 }
 
 .add-to-ranking-select {
-  background-color: #2D3354;
-  border: 1px solid #27272a;
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
   color: #ffffff;
   padding: 10px 14px;
   border-radius: 8px;
@@ -123,8 +123,8 @@
 }
 
 .add-to-ranking-btn {
-  background-color: #E5A00D;
-  color: #1a1e36;
+  background-color: #F59E0B;
+  color: #0D111A;
   font-weight: 700;
   border: none;
   padding: 10px 20px;
@@ -158,7 +158,7 @@
 .movie-synopsis-section p {
   font-size: 15px;
   line-height: 1.6;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .cast-section {
@@ -179,8 +179,8 @@
 }
 
 .cast-card {
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 12px;
   padding: 14px 10px;
   text-align: center;
@@ -195,7 +195,7 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #D8E3ED;
+  border: 2px solid #2E3A4E;
   margin-bottom: 4px;
 }
 
@@ -203,8 +203,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #2D3354;
-  color: #D8E3ED;
+  background-color: #1F293A;
+  color: #94A3B8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,7 +221,7 @@
 
 .cast-character {
   font-size: 12px;
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.85;
 }
 

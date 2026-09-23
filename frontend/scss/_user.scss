@@ -14,7 +14,7 @@
   height: 60vh;
   object-fit: cover;
   object-position: center;
-  Z-index: 1000;
+  z-index: 1000;
 }
 
 .profile-pfp {
@@ -24,8 +24,8 @@
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid #D8E3ED;
-  Z-index: 1001;
+  border: 5px solid #2E3A4E;
+  z-index: 1001;
 }
 
 .info-holder {
@@ -41,7 +41,7 @@
   font-size: 40px;
   font-weight: 700;
   font-family: sans-serif;
-  color: #D8E3ED;
+  color: #ffffff;
   line-height: 44px;
 }
 
@@ -49,13 +49,13 @@
   font-size: 20px;
   font-weight: 400;
   font-family: sans-serif;
-  color: #D8E3ED;
+  color: #94A3B8;
   line-height: 22px;
 }
 
 .profile-nav-bar {
   margin-top: 25px;
-  border-bottom: 2px solid #5D7799;
+  border-bottom: 2px solid #2E3A4E;
   padding-bottom: 0;
 }
 
@@ -67,7 +67,7 @@
 .profile-tab-btn {
   background: none;
   border: none;
-  color: #D8E3ED;
+  color: #94A3B8;
   font-size: 18px;
   font-weight: 600;
   padding: 12px 24px;
@@ -78,14 +78,14 @@
 }
 
 .profile-tab-btn:hover {
-  background-color: rgba(93, 119, 153, 0.2);
+  background-color: rgba(245, 158, 11, 0.1);
   color: #ffffff;
 }
 
 .profile-tab-btn.active {
   color: #ffffff;
-  border-bottom-color: #E5A00D;
-  background-color: rgba(93, 119, 153, 0.3);
+  border-bottom-color: #F59E0B;
+  background-color: rgba(245, 158, 11, 0.15);
 }
 
 .profile-content {
@@ -101,8 +101,8 @@
 }
 
 .profile-friends-section {
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   padding: 24px;
   border-radius: 16px;
 }
@@ -116,12 +116,12 @@
 
 .profile-friends-header h2 {
   font-size: 24px;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .find-more-friends-btn {
-  background-color: #2D3354;
-  color: #D8E3ED;
+  background-color: #1F293A;
+  color: #94A3B8;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -130,7 +130,7 @@
 }
 
 .find-more-friends-btn:hover {
-  background-color: #3d4670;
+  background-color: #2E3A4E;
   color: #ffffff;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .friend-card {
-  background-color: #2D3354;
+  background-color: #1F293A;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -149,7 +149,7 @@
   gap: 12px;
   align-items: center;
   text-align: center;
-  border: 1px solid #3d4670;
+  border: 1px solid #2E3A4E;
 }
 
 .friend-avatar {
@@ -157,7 +157,7 @@
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #D8E3ED;
+  border: 2px solid #2E3A4E;
 }
 
 .friend-info {
@@ -174,18 +174,18 @@
 
 .friend-status {
   font-size: 13px;
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.9;
 }
 
 .friend-shared {
   font-size: 12px;
-  color: #E5A00D;
+  color: #F59E0B;
 }
 
 .friend-action-btn {
   display: inline-block;
-  background-color: #5D7799;
+  background-color: #161D2A;
   color: #ffffff;
   padding: 6px 14px;
   border-radius: 6px;
@@ -194,12 +194,12 @@
 }
 
 .friend-action-btn:hover {
-  background-color: #4a6382;
+  background-color: #2E3A4E;
 }
 
 .profile-settings-section {
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   padding: 24px;
   border-radius: 16px;
   max-width: 700px;
@@ -220,13 +220,13 @@
 .settings-group label {
   font-size: 14px;
   font-weight: 600;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .settings-input,
 .settings-textarea {
-  background-color: #2D3354;
-  border: 1px solid #27272a;
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
   color: #ffffff;
   padding: 10px 14px;
   border-radius: 8px;
@@ -237,7 +237,7 @@
 
 .settings-input:focus,
 .settings-textarea:focus {
-  border-color: #E5A00D;
+  border-color: #F59E0B;
 }
 
 .settings-actions {
@@ -245,8 +245,8 @@
 }
 
 .settings-save-btn {
-  background-color: #2D3354;
-  color: #ffffff;
+  background-color: #F59E0B;
+  color: #0D111A;
   border: none;
   padding: 10px 24px;
   border-radius: 8px;
@@ -257,13 +257,13 @@
 }
 
 .settings-save-btn:hover {
-  background-color: #3d4670;
+  background-color: #D97706;
 }
 
 .settings-logout-section {
   margin-top: 30px;
   padding-top: 24px;
-  border-top: 1px solid #3d4670;
+  border-top: 1px solid #2E3A4E;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -276,7 +276,7 @@
 
 .settings-logout-section p {
   font-size: 14px;
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.85;
 }
 
@@ -301,7 +301,7 @@
 .settings-photos-section {
   margin-bottom: 28px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #3d4670;
+  border-bottom: 1px solid #2E3A4E;
 }
 
 .settings-photos-section h3 {
@@ -323,8 +323,8 @@
 }
 
 .photo-upload-card {
-  background-color: #2D3354;
-  border: 1px solid #3d4670;
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -335,19 +335,19 @@
 .photo-upload-card h4 {
   font-size: 15px;
   font-weight: 600;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .photo-preview-wrap {
   width: 100%;
   height: 140px;
   border-radius: 8px;
-  background-color: #1a1e36;
+  background-color: #0D111A;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px dashed #5D7799;
+  border: 1px dashed #2E3A4E;
 }
 
 .photo-preview-img.avatar-preview {
@@ -355,7 +355,7 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #D8E3ED;
+  border: 3px solid #2E3A4E;
 }
 
 .photo-preview-img.banner-preview {
@@ -371,7 +371,7 @@
 }
 
 .photo-upload-file-btn {
-  background-color: #5D7799;
+  background-color: #161D2A;
   color: #ffffff;
   padding: 8px 14px;
   border-radius: 6px;
@@ -383,12 +383,12 @@
 }
 
 .photo-upload-file-btn:hover {
-  background-color: #4a6382;
+  background-color: #2E3A4E;
 }
 
 .photo-filename {
   font-size: 12px;
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.8;
   white-space: nowrap;
   overflow: hidden;
@@ -396,8 +396,8 @@
 }
 
 .photo-submit-btn {
-  background-color: #E5A00D;
-  color: #1a1e36;
+  background-color: #F59E0B;
+  color: #0D111A;
   border: none;
   padding: 9px 16px;
   border-radius: 6px;
@@ -408,7 +408,7 @@
 }
 
 .photo-submit-btn:disabled {
-  background-color: #5D7799;
+  background-color: #161D2A;
   color: #8fa2bd;
   cursor: not-allowed;
   opacity: 0.6;
@@ -424,7 +424,7 @@
 }
 
 .photo-status-msg.info {
-  color: #E5A00D;
+  color: #F59E0B;
 }
 
 .photo-status-msg.success {

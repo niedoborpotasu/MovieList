@@ -9,7 +9,7 @@
 
 .friends-header-bar h1 {
   font-size: 32px;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .friends-search-box {
@@ -23,13 +23,13 @@
   position: absolute;
   left: 14px;
   pointer-events: none;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .friends-search-box input {
   width: 100%;
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   color: #ffffff;
   padding: 12px 18px 12px 44px;
   border-radius: 20px;
@@ -39,12 +39,12 @@
 }
 
 .friends-search-box input:focus {
-  border-color: #E5A00D;
-  background-color: #4a6382;
+  border-color: #F59E0B;
+  background-color: #1F293A;
 }
 
 .friends-search-box input::placeholder {
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.8;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .friends-tab-btn {
-  background-color: #5D7799;
-  color: #D8E3ED;
+  background-color: #161D2A;
+  color: #94A3B8;
   border: 1px solid transparent;
   padding: 8px 18px;
   border-radius: 20px;
@@ -67,13 +67,13 @@
 }
 
 .friends-tab-btn:hover {
-  background-color: #4a6382;
+  background-color: #2E3A4E;
   color: #ffffff;
 }
 
 .friends-tab-btn.active {
-  background-color: #E5A00D;
-  color: #1a1e36;
+  background-color: #F59E0B;
+  color: #0D111A;
   font-weight: 700;
 }
 
@@ -88,8 +88,8 @@
 }
 
 .friend-card-full {
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -108,7 +108,7 @@
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #D8E3ED;
+  border: 3px solid #2E3A4E;
   flex-shrink: 0;
 }
 
@@ -131,8 +131,8 @@
 }
 
 .friend-tag {
-  background-color: #2D3354;
-  color: #D8E3ED;
+  background-color: #1F293A;
+  color: #94A3B8;
   font-size: 12px;
   font-weight: 600;
   padding: 2px 10px;
@@ -141,7 +141,7 @@
 
 .friend-bio {
   font-size: 14px;
-  color: #D8E3ED;
+  color: #94A3B8;
   line-height: 1.4;
 }
 
@@ -149,7 +149,7 @@
   display: flex;
   gap: 18px;
   font-size: 13px;
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.9;
 }
 
@@ -163,7 +163,7 @@
 .btn-primary {
   display: inline-block;
   text-align: center;
-  background-color: #2D3354;
+  background-color: #1F293A;
   color: #ffffff;
   padding: 10px 18px;
   border-radius: 8px;
@@ -175,15 +175,15 @@
 }
 
 .btn-primary:hover {
-  background-color: #3d4670;
+  background-color: #2E3A4E;
 }
 
 .btn-secondary {
   display: inline-block;
   text-align: center;
   background-color: transparent;
-  color: #D8E3ED;
-  border: 1px solid #D8E3ED;
+  color: #94A3B8;
+  border: 1px solid #2E3A4E;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -193,13 +193,13 @@
 }
 
 .btn-secondary:hover {
-  background-color: rgba(216, 227, 237, 0.15);
+  background-color: rgba(148, 163, 184, 0.15);
   color: #ffffff;
 }
 
 .no-results-msg {
   font-size: 18px;
-  color: #D8E3ED;
+  color: #94A3B8;
   text-align: center;
   margin-top: 40px;
 }

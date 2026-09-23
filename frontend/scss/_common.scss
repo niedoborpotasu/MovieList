@@ -1,7 +1,7 @@
 .filter-select {
-  background-color: #2D3354;
-  border: 1px solid #27272a;
-  color: #D8E3ED;
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
+  color: #94A3B8;
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 14px;
@@ -13,20 +13,20 @@
 
   &:hover,
   &:focus {
-    border-color: #5D4521;
+    border-color: #F59E0B;
     color: #ffffff;
   }
 
   option {
-    background-color: #2D3354;
+    background-color: #1F293A;
     color: #ffffff;
   }
 }
 
 .load-more-btn {
-  background-color: #5D4521;
-  color: #ffffff;
-  border: 1px solid #5D4521;
+  background-color: #F59E0B;
+  color: #0D111A;
+  border: 1px solid #F59E0B;
   padding: 10px 28px;
   border-radius: 20px;
   font-size: 14px;
@@ -36,16 +36,16 @@
   outline: none;
 
   &:hover {
-    background-color: #785929;
-    border-color: #785929;
+    background-color: #D97706;
+    border-color: #D97706;
     color: #ffffff;
   }
 }
 
 .movie-card {
   position: relative;
-  background: #5D7799;
-  border: 1px solid #27272a;
+  background: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 12px;
   height: 330px;
   overflow: hidden;
@@ -89,7 +89,7 @@
   font-weight: 600;
 
   .movie-votes {
-    color: #D8E3ED;
+    color: #94A3B8;
     font-size: 12px;
   }
 
@@ -117,7 +117,7 @@
 
   .movie-year {
     font-size: 13px;
-    color: #D8E3ED;
+    color: #94A3B8;
     opacity: 0.85;
   }
 }

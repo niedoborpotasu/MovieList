@@ -29,8 +29,8 @@
 }
 
 .filter-buttons {
-  background: #5D7799;
-  border: 1px solid #27272a;
+  background: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 30px;
   padding: 4px;
   display: flex;
@@ -40,7 +40,7 @@
 .filter-btn {
   background: transparent;
   border: none;
-  color: #5D4521;
+  color: #94A3B8;
   padding: 6px 16px;
   border-radius: 20px;
   cursor: pointer;
@@ -50,8 +50,8 @@
 }
 
 .filter-btn.active {
-  background: #5D4521;
-  color: #ffffff;
+  background: #F59E0B;
+  color: #0D111A;
 }
 
 .trending-main {

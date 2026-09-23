@@ -7,8 +7,8 @@
 }
 
 .auth-card {
-  background-color: #5D7799;
-  border: 1px solid #27272a;
+  background-color: #161D2A;
+  border: 1px solid #2E3A4E;
   border-radius: 20px;
   padding: 36px;
   width: 100%;
@@ -24,9 +24,9 @@
 
 .auth-tab-btn {
   flex: 1;
-  background-color: #2D3354;
-  color: #D8E3ED;
-  border: 1px solid #3d4670;
+  background-color: #1F293A;
+  color: #94A3B8;
+  border: 1px solid #2E3A4E;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 15px;
@@ -36,14 +36,14 @@
 }
 
 .auth-tab-btn:hover {
-  background-color: #3d4670;
+  background-color: #2E3A4E;
   color: #ffffff;
 }
 
 .auth-tab-btn.active {
-  background-color: #E5A00D;
-  color: #1a1e36;
-  border-color: #E5A00D;
+  background-color: #F59E0B;
+  color: #0D111A;
+  border-color: #F59E0B;
   font-weight: 700;
 }
 
@@ -62,12 +62,12 @@
 .auth-group label {
   font-size: 14px;
   font-weight: 600;
-  color: #D8E3ED;
+  color: #94A3B8;
 }
 
 .auth-input {
-  background-color: #2D3354;
-  border: 1px solid #27272a;
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
   color: #ffffff;
   padding: 12px 16px;
   border-radius: 8px;
@@ -77,17 +77,17 @@
 }
 
 .auth-input:focus {
-  border-color: #E5A00D;
+  border-color: #F59E0B;
 }
 
 .auth-input::placeholder {
-  color: #D8E3ED;
+  color: #94A3B8;
   opacity: 0.6;
 }
 
 .auth-submit-btn {
-  background-color: #E5A00D;
-  color: #1a1e36;
+  background-color: #F59E0B;
+  color: #0D111A;
   border: none;
   padding: 12px;
   border-radius: 8px;
