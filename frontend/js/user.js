@@ -41,16 +41,34 @@ function applyUserPhotos(user) {
     }
 }
 
+function applyUserData(user) {
+    if (!user) return;
+    var profileUsername = document.getElementById('profileUsername');
+    var profileBio = document.getElementById('profileBio');
+    var usernameInput = document.getElementById('settingsUsername');
+    var bioInput = document.getElementById('settingsBio');
+    var emailInput = document.getElementById('settingsEmail');
+
+    if (profileUsername) profileUsername.textContent = user.username || '';
+    if (profileBio) profileBio.textContent = user.bio || '';
+    if (usernameInput) usernameInput.value = user.username || '';
+    if (bioInput) bioInput.value = user.bio || '';
+    if (emailInput) emailInput.value = user.email || '';
+
+    applyUserPhotos(user);
+}
+
 async function refreshUserData(user) {
-    if (!user || !user.id) return;
+    var current = typeof getCurrentUser === 'function' ? getCurrentUser() : user;
+    if (!current || !current.id) return;
     try {
-        var response = await fetch(USERS_API_BASE + '/' + user.id);
+        var response = await fetch(USERS_API_BASE + '/' + current.id);
         if (response.ok) {
             var latest = await response.json();
             if (typeof setCurrentUser === 'function') {
                 setCurrentUser(latest);
             }
-            applyUserPhotos(latest);
+            applyUserData(latest);
         }
     } catch (err) {}
 }
@@ -208,41 +226,90 @@ function initPhotoUploads(user) {
 
 function initUserSettings(user) {
     if (user) {
-        var usernameInput = document.getElementById('settingsUsername');
-        var emailInput = document.getElementById('settingsEmail');
-        var profileUsername = document.getElementById('profileUsername');
-        if (usernameInput) usernameInput.value = user.username;
-        if (emailInput) emailInput.value = user.email;
-        if (profileUsername) profileUsername.textContent = user.username;
-        applyUserPhotos(user);
+        applyUserData(user);
     }
 
     var settingsForm = document.getElementById('profileSettingsForm');
+    var statusMsg = document.getElementById('settingsStatusMsg');
     if (settingsForm) {
-        settingsForm.addEventListener('submit', function(e) {
+        settingsForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            var current = typeof getCurrentUser === 'function' ? getCurrentUser() : user;
+            if (!current || !current.id) return;
 
             var usernameInput = document.getElementById('settingsUsername');
             var bioInput = document.getElementById('settingsBio');
-
-            var profileUsername = document.getElementById('profileUsername');
-            var profileBio = document.getElementById('profileBio');
-
-            if (usernameInput && profileUsername) {
-                profileUsername.textContent = usernameInput.value;
-            }
-
-            if (bioInput && profileBio) {
-                profileBio.textContent = bioInput.value;
-            }
-
+            var emailInput = document.getElementById('settingsEmail');
             var saveBtn = settingsForm.querySelector('.settings-save-btn');
+
+            var updatedUsername = usernameInput ? usernameInput.value.trim() : '';
+            var updatedBio = bioInput ? bioInput.value.trim() : '';
+            var updatedEmail = emailInput ? emailInput.value.trim() : '';
+
+            if (!updatedUsername) {
+                if (statusMsg) {
+                    statusMsg.textContent = 'Username cannot be empty.';
+                    statusMsg.className = 'photo-status-msg error';
+                    statusMsg.style.display = 'block';
+                }
+                return;
+            }
+
+            var originalText = saveBtn ? saveBtn.textContent : 'Save Changes';
             if (saveBtn) {
-                var originalText = saveBtn.textContent;
-                saveBtn.textContent = 'Saved!';
-                setTimeout(function() {
-                    saveBtn.textContent = originalText;
-                }, 1500);
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Saving...';
+            }
+
+            try {
+                var response = await fetch(USERS_API_BASE + '/' + current.id, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: updatedUsername,
+                        bio: updatedBio,
+                        email: updatedEmail
+                    })
+                });
+
+                if (!response.ok) {
+                    var errText = await response.text();
+                    throw new Error(errText || 'Failed to update profile.');
+                }
+
+                var updatedUser = await response.json();
+                if (typeof setCurrentUser === 'function') {
+                    setCurrentUser(updatedUser);
+                }
+                applyUserData(updatedUser);
+
+                if (statusMsg) {
+                    statusMsg.textContent = 'Profile updated successfully!';
+                    statusMsg.className = 'photo-status-msg success';
+                    statusMsg.style.display = 'block';
+                }
+                if (saveBtn) {
+                    saveBtn.textContent = 'Saved!';
+                }
+            } catch (err) {
+                if (statusMsg) {
+                    statusMsg.textContent = err.message || 'Error updating profile.';
+                    statusMsg.className = 'photo-status-msg error';
+                    statusMsg.style.display = 'block';
+                }
+            } finally {
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    setTimeout(function() {
+                        saveBtn.textContent = originalText;
+                        if (statusMsg) {
+                            setTimeout(function() {
+                                statusMsg.style.display = 'none';
+                            }, 3000);
+                        }
+                    }, 1500);
+                }
             }
         });
     }

@@ -1,12 +1,7 @@
 function getCurrentUser() {
     var userJson = localStorage.getItem('currentUser');
     if (!userJson) {
-        if (localStorage.getItem('loggedOut') === 'true') {
-            return null;
-        }
-        var defaultUser = { id: 1, username: 'Tony Stark', email: 'tony@stark.com' };
-        localStorage.setItem('currentUser', JSON.stringify(defaultUser));
-        return defaultUser;
+        return null;
     }
     try {
         return JSON.parse(userJson);

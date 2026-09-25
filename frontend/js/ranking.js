@@ -39,12 +39,12 @@ function applyRankingFilters() {
         var title = titleEl ? titleEl.textContent.toLowerCase().trim() : '';
 
         var ratingEl = card.querySelector('.movie-rating-badge strong');
-        var ratingNum = ratingEl ? parseInt(ratingEl.textContent.split('/')[0].trim(), 10) : 0;
+        var ratingNum = ratingEl ? parseFloat(ratingEl.textContent.split('/')[0].trim()) : 0;
 
         var normalizedStatus = cardStatus.replace(/\s+/g, '-');
         var statusMatches = checkedValues.length === 0 || checkedValues.includes(cardStatus) || checkedValues.includes(normalizedStatus);
         var searchMatches = !searchVal || title.includes(searchVal);
-        var ratingMatches = ratingVal === null || (ratingVal === 10 ? ratingNum === 10 : ratingNum >= ratingVal);
+        var ratingMatches = ratingVal === null || (ratingVal === 10 ? ratingNum >= 10 : ratingNum >= ratingVal);
 
         if (statusMatches && searchMatches && ratingMatches) {
             card.style.display = 'flex';
@@ -57,8 +57,8 @@ function applyRankingFilters() {
         cards.sort(function(a, b) {
             var ratingTextA = a.querySelector('.movie-rating-badge strong') ? a.querySelector('.movie-rating-badge strong').textContent : '0';
             var ratingTextB = b.querySelector('.movie-rating-badge strong') ? b.querySelector('.movie-rating-badge strong').textContent : '0';
-            var numA = parseInt(ratingTextA.split('/')[0].trim(), 10) || 0;
-            var numB = parseInt(ratingTextB.split('/')[0].trim(), 10) || 0;
+            var numA = parseFloat(ratingTextA.split('/')[0].trim()) || 0;
+            var numB = parseFloat(ratingTextB.split('/')[0].trim()) || 0;
 
             var titleA = a.querySelector('h3') ? a.querySelector('h3').textContent.toLowerCase().trim() : '';
             var titleB = b.querySelector('h3') ? b.querySelector('h3').textContent.toLowerCase().trim() : '';
@@ -98,12 +98,16 @@ async function loadUserRanking() {
     var grid = document.querySelector('.user-movies-grid');
     if (!grid) return;
 
+    var currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+    if (!currentUser) {
+        grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Please sign in to view your ranking.</p>';
+        return;
+    }
+
     grid.innerHTML = '<p style="color: #D8E3ED; padding: 20px;">Loading ranking from database...</p>';
 
     try {
-        var currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
-        var currentUserId = currentUser ? currentUser.id : 1;
-        var response = await fetch(RANKING_API_URL + '?userId=' + currentUserId);
+        var response = await fetch(RANKING_API_URL + '?userId=' + currentUser.id);
         if (!response.ok) {
             throw new Error('Failed to load ranking');
         }
@@ -158,6 +162,10 @@ function openEditModal(card) {
         modalTitle.textContent = 'Edit movie: ' + title;
     }
     if (modalRatingInput) {
+        modalRatingInput.type = 'number';
+        modalRatingInput.step = '0.1';
+        modalRatingInput.min = '1';
+        modalRatingInput.max = '10';
         modalRatingInput.value = numericRating === 'N/A' ? '10' : numericRating;
     }
 
@@ -195,10 +203,11 @@ async function saveModalChanges() {
     var modalRatingInput = modal ? modal.querySelector('.modal-input-text') : null;
 
     var newStatus = modalStatusSelect ? modalStatusSelect.value : 'Watching';
-    var newRating = modalRatingInput ? parseInt(modalRatingInput.value, 10) : 10;
+    var newRating = modalRatingInput ? parseFloat(modalRatingInput.value) : 10;
 
     if (isNaN(newRating) || newRating < 1) newRating = 1;
     if (newRating > 10) newRating = 10;
+    newRating = Math.round(newRating * 10) / 10;
 
     if (rankingId) {
         try {

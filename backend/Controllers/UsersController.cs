@@ -32,6 +32,7 @@ public class UsersController : ControllerBase
                 Id = u.Id,
                 Username = u.Username,
                 Email = u.Email,
+                Bio = u.Bio,
                 IsAdmin = u.IsAdmin,
                 AvatarUrl = u.AvatarUrl,
                 BannerUrl = u.BannerUrl,
@@ -52,6 +53,7 @@ public class UsersController : ControllerBase
                 Id = u.Id,
                 Username = u.Username,
                 Email = u.Email,
+                Bio = u.Bio,
                 IsAdmin = u.IsAdmin,
                 AvatarUrl = u.AvatarUrl,
                 BannerUrl = u.BannerUrl,
@@ -99,6 +101,7 @@ public class UsersController : ControllerBase
             Id = user.Id,
             Username = user.Username,
             Email = user.Email,
+            Bio = user.Bio,
             IsAdmin = user.IsAdmin,
             AvatarUrl = user.AvatarUrl,
             BannerUrl = user.BannerUrl,
@@ -106,6 +109,57 @@ public class UsersController : ControllerBase
         };
 
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, result);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<UserDto>> UpdateUser(int id, [FromBody] UpdateUserDto dto)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound("User not found.");
+        }
+
+        if (!string.IsNullOrWhiteSpace(dto.Username) && dto.Username != user.Username)
+        {
+            var usernameExists = await _context.Users.AnyAsync(u => u.Id != id && u.Username == dto.Username);
+            if (usernameExists)
+            {
+                return BadRequest("Username is already taken.");
+            }
+            user.Username = dto.Username.Trim();
+        }
+
+        if (!string.IsNullOrWhiteSpace(dto.Email) && dto.Email != user.Email)
+        {
+            var emailExists = await _context.Users.AnyAsync(u => u.Id != id && u.Email == dto.Email);
+            if (emailExists)
+            {
+                return BadRequest("Email is already registered.");
+            }
+            user.Email = dto.Email.Trim();
+        }
+
+        if (dto.Bio != null)
+        {
+            user.Bio = dto.Bio.Trim();
+        }
+
+        await _context.SaveChangesAsync();
+
+        var result = new UserDto
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Email = user.Email,
+            Bio = user.Bio,
+            IsAdmin = user.IsAdmin,
+            AvatarUrl = user.AvatarUrl,
+            BannerUrl = user.BannerUrl,
+            CreatedAt = user.CreatedAt
+        };
+
+        return Ok(result);
     }
 
     [HttpPost("{id}/avatar")]
@@ -136,6 +190,7 @@ public class UsersController : ControllerBase
             Id = user.Id,
             Username = user.Username,
             Email = user.Email,
+            Bio = user.Bio,
             IsAdmin = user.IsAdmin,
             AvatarUrl = user.AvatarUrl,
             BannerUrl = user.BannerUrl,
@@ -173,6 +228,7 @@ public class UsersController : ControllerBase
             Id = user.Id,
             Username = user.Username,
             Email = user.Email,
+            Bio = user.Bio,
             IsAdmin = user.IsAdmin,
             AvatarUrl = user.AvatarUrl,
             BannerUrl = user.BannerUrl,

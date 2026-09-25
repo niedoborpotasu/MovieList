@@ -1421,6 +1421,21 @@ main.container p {
   outline: none;
 }
 
+.add-to-ranking-rating {
+  background-color: #1F293A;
+  border: 1px solid #2E3A4E;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  width: 140px;
+  transition: border-color 0.2s ease;
+}
+.add-to-ranking-rating:focus {
+  border-color: #F59E0B;
+}
+
 .add-to-ranking-btn {
   background-color: #F59E0B;
   color: #0D111A;

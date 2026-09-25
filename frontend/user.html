@@ -14,8 +14,8 @@
             <div class="profile-section">
                 <img src="img/stark_pfp.jpg" class="profile-pfp" id="profileAvatar">
                 <div class="info-holder">
-                    <h1 class="profile-username" id="profileUsername">Tony Stark</h1>
-                    <p class="profile-bio" id="profileBio">Genius, billionaire, playboy, philanthropist.</p>
+                    <h1 class="profile-username" id="profileUsername"></h1>
+                    <p class="profile-bio" id="profileBio"></p>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="modal-field">
                             <label>Your rating (1-10):</label>
-                            <input type="text" value="9" class="modal-input-text">
+                            <input type="number" step="0.1" min="1" max="10" value="9" class="modal-input-text">
                         </div>
                         <div class="modal-actions">
                             <button class="modal-save-btn">Save</button>
@@ -199,21 +199,22 @@
                     <form class="settings-form" id="profileSettingsForm">
                         <div class="settings-group">
                             <label for="settingsUsername">Username</label>
-                            <input type="text" id="settingsUsername" class="settings-input" value="Tony Stark">
+                            <input type="text" id="settingsUsername" class="settings-input">
                         </div>
 
                         <div class="settings-group">
                             <label for="settingsBio">Bio</label>
-                            <textarea id="settingsBio" class="settings-textarea" rows="3">Genius, billionaire, playboy, philanthropist.</textarea>
+                            <textarea id="settingsBio" class="settings-textarea" rows="3" placeholder="Tell us about yourself..."></textarea>
                         </div>
 
                         <div class="settings-group">
                             <label for="settingsEmail">Email</label>
-                            <input type="email" id="settingsEmail" class="settings-input" value="tony@starkindustries.com">
+                            <input type="email" id="settingsEmail" class="settings-input">
                         </div>
 
                         <div class="settings-actions">
                             <button type="submit" class="settings-save-btn">Save Changes</button>
+                            <div id="settingsStatusMsg" class="photo-status-msg" style="display:none; margin-top: 10px;"></div>
                         </div>
                     </form>
 

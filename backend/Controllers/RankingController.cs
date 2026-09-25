@@ -42,77 +42,17 @@ public class RankingController : ControllerBase
         };
     }
 
-    private async Task EnsureInitialDataAsync(int userId)
-    {
-        var user = await _context.Users.FindAsync(userId);
-        if (user == null)
-        {
-            user = new User
-            {
-                Username = "Tony Stark",
-                Email = "tony@stark.com",
-                PasswordHash = "hashed_default",
-                CreatedAt = DateTime.UtcNow
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            userId = user.Id;
-        }
-
-        var count = await _context.UserMediaItems.CountAsync(u => u.UserId == userId);
-        if (count == 0)
-        {
-            var seedData = new List<(string Title, string Poster, int Year, WatchStatus Status, double Rating)>
-            {
-                ("Inception", "posters/inception.jpg", 2010, WatchStatus.Completed, 9),
-                ("Interstellar", "posters/interstellar.jpg", 2014, WatchStatus.Watching, 10),
-                ("The Dark Knight", "posters/dark_knight.jpg", 2008, WatchStatus.Planning, 9),
-                ("Pulp Fiction", "", 1994, WatchStatus.Dropped, 8),
-                ("Fight Club", "posters/fight_club.jpg", 1999, WatchStatus.Completed, 9),
-                ("The Matrix", "", 1999, WatchStatus.Watching, 10),
-                ("The Conjuring", "posters/the_conjuring.jpg", 2013, WatchStatus.Planning, 7),
-                ("Gladiator", "posters/gladiator.jpg", 2000, WatchStatus.Dropped, 8)
-            };
-
-            foreach (var item in seedData)
-            {
-                var media = await _context.MediaItems.FirstOrDefaultAsync(m => m.Title == item.Title);
-                if (media == null)
-                {
-                    media = new MediaItem
-                    {
-                        Title = item.Title,
-                        Poster = item.Poster,
-                        Year = item.Year,
-                        MediaType = MediaType.Movie
-                    };
-                    _context.MediaItems.Add(media);
-                    await _context.SaveChangesAsync();
-                }
-
-                var userMedia = new UserMediaItem
-                {
-                    UserId = userId,
-                    MediaItemId = media.Id,
-                    WatchStatus = item.Status,
-                    Rating = item.Rating,
-                    WatchedAt = DateTime.UtcNow
-                };
-                _context.UserMediaItems.Add(userMedia);
-            }
-
-            await _context.SaveChangesAsync();
-        }
-    }
-
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RankingItemDto>>> GetRanking([FromQuery] int userId = 1)
+    public async Task<ActionResult<IEnumerable<RankingItemDto>>> GetRanking([FromQuery] int? userId)
     {
-        await EnsureInitialDataAsync(userId);
+        if (!userId.HasValue)
+        {
+            return Ok(new List<RankingItemDto>());
+        }
 
         var items = await _context.UserMediaItems
             .Include(u => u.MediaItem)
-            .Where(u => u.UserId == userId)
+            .Where(u => u.UserId == userId.Value)
             .Select(u => new RankingItemDto
             {
                 Id = u.Id,
@@ -132,7 +72,11 @@ public class RankingController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<RankingItemDto>> AddToRanking([FromBody] AddRankingDto dto)
     {
-        await EnsureInitialDataAsync(dto.UserId);
+        var userExists = await _context.Users.AnyAsync(u => u.Id == dto.UserId);
+        if (!userExists)
+        {
+            return BadRequest("User not found.");
+        }
 
         var media = await _context.MediaItems.FirstOrDefaultAsync(m => m.Title == dto.Title);
         if (media == null)

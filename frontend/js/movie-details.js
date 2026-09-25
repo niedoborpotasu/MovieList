@@ -101,6 +101,7 @@ function renderMovieDetails(movie) {
                         <option value="To Watch" selected>To Watch</option>
                         <option value="Dropped">Dropped</option>
                     </select>
+                    <input type="number" id="rankingRatingInput" class="add-to-ranking-rating" placeholder="Rating (1-10)" min="1" max="10" step="0.1">
                     <button id="addToRankingBtn" class="add-to-ranking-btn">+ Add to my ranking</button>
                     <span id="rankingStatusMsg" class="ranking-status-msg" style="display: none;">Added to ranking!</span>
                 </div>
@@ -118,28 +119,61 @@ function renderMovieDetails(movie) {
     const addBtn = document.getElementById('addToRankingBtn');
     const msg = document.getElementById('rankingStatusMsg');
     const statusSelect = document.getElementById('rankingStatusSelect');
+    const ratingInput = document.getElementById('rankingRatingInput');
     if (addBtn && msg) {
         addBtn.addEventListener('click', async function() {
+            const currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+            if (!currentUser) {
+                msg.textContent = 'Please sign in to add to ranking.';
+                msg.style.color = '#EF4444';
+                msg.style.display = 'inline-block';
+                setTimeout(function() {
+                    window.location.href = 'login.html';
+                }, 1500);
+                return;
+            }
+
             const selectedStatus = statusSelect ? statusSelect.value : 'To Watch';
-            var currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
-            var currentUserId = currentUser ? currentUser.id : 1;
+            let parsedRating = null;
+            if (ratingInput && ratingInput.value.trim() !== '') {
+                const val = parseFloat(ratingInput.value.trim());
+                if (isNaN(val) || val < 1 || val > 10) {
+                    msg.textContent = 'Rating must be between 1 and 10.';
+                    msg.style.color = '#EF4444';
+                    msg.style.display = 'inline-block';
+                    setTimeout(function() {
+                        msg.style.display = 'none';
+                    }, 2500);
+                    return;
+                }
+                parsedRating = Math.round(val * 10) / 10;
+            }
+
             try {
-                await fetch('http://localhost:5131/api/ranking', {
+                const res = await fetch('http://localhost:5131/api/ranking', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        userId: currentUserId,
+                        userId: currentUser.id,
                         title: movie.title,
                         poster: posterSrc,
                         year: releaseDate ? parseInt(releaseDate.split('-')[0], 10) : null,
                         watchStatus: selectedStatus,
-                        rating: voteAvg ? Math.round(Number(voteAvg)) : null
+                        rating: parsedRating
                     })
                 });
+
+                if (!res.ok) {
+                    const errText = await res.text();
+                    throw new Error(errText || 'Failed to add to ranking');
+                }
+
                 msg.textContent = 'Added to ranking!';
+                msg.style.color = '#A3E635';
                 msg.style.display = 'inline-block';
             } catch (err) {
-                msg.textContent = 'Saved!';
+                msg.textContent = err.message || 'Failed to add to ranking.';
+                msg.style.color = '#EF4444';
                 msg.style.display = 'inline-block';
             }
             setTimeout(function() {
